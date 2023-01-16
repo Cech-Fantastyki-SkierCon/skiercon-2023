@@ -1,0 +1,173 @@
+<footer class="footer">
+  <div class="container">
+    <div class="wrap">
+      <div>
+        <img src="/logo.png" alt="" class="logo" />
+      </div>
+      <div class="navs">
+        <nav class="nav">
+          <h2 class="nav-title">Informacje</h2>
+          <ul class="list">
+            <li>
+              <a class="link" href="/jak-dojade">Jak dojadę</a>
+            </li>
+            <li>
+              <a class="link" href="/nocleg">Nocleg</a>
+            </li>
+            <li>
+              <a class="link" href="/gastronomia">Gastronomia</a>
+            </li>
+            <li>
+              <a class="link" href="/mapa-konwentu">Mapa konwentu</a>
+            </li>
+            <li>
+              <a class="link" href="/kontakt">Kontakt</a>
+            </li>
+            <li>
+              <a class="link" href="/regulamin">Regulamin</a>
+            </li>
+          </ul>
+        </nav>
+
+        <nav class="nav">
+          <h2 class="nav-title">Program</h2>
+          <ul class="list">
+            <li>
+              <a class="link" href="/tabela-programowa">Tabela programowa</a>
+            </li>
+            <li>
+              <a class="link" href="/goscie">Goście</a>
+            </li>
+            <li>
+              <a class="link" href="/turnieje">Turnieje</a>
+            </li>
+            <li>
+              <a class="link" href="/sesje-rpg-i-larpy">Sesje RPG i LARP-y</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="wrap bottom">
+      <div>CF SkierCon 2023</div>
+      <nav>
+        <ul class="list list--social">
+          <li>
+            <a
+              class="link"
+              href="https://www.facebook.com/SkierCon"
+              target="_blank"
+            >
+              Facebook
+            </a>
+          </li>
+          <li>
+            <a
+              class="link"
+              href="https://www.instagram.com/skiercon/"
+              target="_blank"
+            >
+              Instagram
+            </a>
+          </li>
+          <li>
+            <a
+              class="link"
+              href="https://www.tiktok.com/@skiercon"
+              target="_blank"
+            >
+              TikTok
+            </a>
+          </li>
+          <li>
+            <a
+              class="link"
+              href="https://www.youtube.com/@cfskiercon7731"
+              target="_blank"
+            >
+              YouTube
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style lang="scss">
+  @use 'sass-mq' as * with (
+    $breakpoints: (
+      mobile: 400px,
+      tablet: 768px,
+      desktop: 1140px,
+    )
+  );
+
+  .footer {
+    background: var(--bg1);
+    padding: 60px 0 20px;
+    margin-top: 80px;
+  }
+
+  .wrap {
+    display: flex;
+    justify-content: space-between;
+
+    @include mq($until: tablet) {
+      display: block;
+    }
+  }
+
+  .navs {
+    display: flex;
+
+    @include mq($until: tablet) {
+      display: block;
+    }
+  }
+
+  .nav {
+    margin-left: 80px;
+
+    @include mq($until: tablet) {
+      margin: 0;
+    }
+  }
+
+  .nav-title {
+    font-size: 22px;
+  }
+
+  .list {
+    list-style-type: none;
+    padding: 0;
+
+    &--social {
+      display: flex;
+      gap: 20px;
+    }
+  }
+
+  .link {
+    font-size: 14px;
+    text-decoration: none;
+    padding: 5px 0;
+    display: block;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  .bottom {
+    margin-top: 60px;
+    font-size: 14px;
+  }
+
+  .logo {
+    filter: drop-shadow(10px 10px 20px #000);
+    user-select: none;
+  }
+</style>

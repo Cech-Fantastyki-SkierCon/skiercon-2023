@@ -1,0 +1,19 @@
+---
+import { api } from '../api'
+import Tiles from '../components/Tiles.astro'
+import Layout from '../layouts/Layout.astro'
+import type { LinkTileDto } from '../__gen-api'
+
+const { slug } = Astro.params
+const data = await api.pages.getPageBySlug(slug!).then(res => res.data)
+
+let tiles: LinkTileDto[] = []
+if (slug === 'program') {
+  tiles = await api.linkTiles.getAllByType('programPage').then(res => res.data)
+}
+---
+
+<Layout title={data.title} description={data.description}>
+  {tiles.length > 0 && <Tiles tiles={tiles} />}
+  <Fragment set:html={data.content} />
+</Layout>

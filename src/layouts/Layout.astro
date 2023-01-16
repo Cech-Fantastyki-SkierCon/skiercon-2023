@@ -1,0 +1,132 @@
+---
+export interface Props {
+  title: string
+  description: string
+}
+
+const { title, description } = Astro.props
+
+import 'normalize.css'
+import 'sass-mq'
+import Nav from './Nav.astro'
+import Footer from './Footer.astro'
+---
+
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/favicon/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#ffc40d" />
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>{title} - Skiercon 2023</title>
+  </head>
+  <body>
+    <Nav />
+    <main class="main container">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+<style is:global lang="scss">
+  @use 'sass-mq' as * with (
+    $breakpoints: (
+      mobile: 400px,
+      tablet: 768px,
+      desktop: 1140px,
+    )
+  );
+
+  :root {
+    --bg1: #124757;
+    --bg2: #196a78;
+    --acc1: #cfc24f;
+    --acc2: #a1a531;
+    --acc3: #687818;
+  }
+
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg1) url('/bcg.png');
+    color: rgb(218, 218, 218);
+    line-height: 1.6;
+    padding-top: 70px;
+  }
+
+  a {
+    color: rgb(218, 218, 218);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 700;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+  }
+
+  .container {
+    margin: 0 auto;
+    padding: 0 20px;
+
+    @include mq($until: tablet) {
+      max-width: 100%;
+    }
+
+    @include mq($until: desktop) {
+      max-width: 760px;
+    }
+
+    @include mq($from: desktop) {
+      max-width: 1140px;
+    }
+  }
+
+  .main {
+    min-height: calc(100vh - 700px);
+  }
+</style>

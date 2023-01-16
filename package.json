@@ -1,0 +1,24 @@
+{
+  "name": "@example/basics",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "node gen-api.cjs && astro dev",
+    "start": "node gen-api.cjs && astro dev",
+    "build": "node gen-api.cjs && astro build",
+    "preview": "node gen-api.cjs && astro preview",
+    "astro": "node gen-api.cjs && astro"
+  },
+  "dependencies": {
+    "astro": "^1.9.0",
+    "axios": "^1.2.2",
+    "normalize.css": "^8.0.1",
+    "sass-mq": "^6.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "sass": "^1.57.1",
+    "swagger-typescript-api": "^12.0.2"
+  }
+}

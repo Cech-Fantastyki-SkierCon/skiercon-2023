@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Tiles from '../components/Tiles.astro'
+import Partners from '../components/Partners.astro'
+import { api } from '../api'
+
+const [links, media, orgs, partners] = await Promise.all([
+  api.linkTiles.getAllByType('homepage').then(res => res.data),
+  api.partners.getPartners({ type: 'Patroni medialni' }).then(res => res.data),
+  api.partners.getPartners({ type: 'Organizator' }).then(res => res.data),
+  api.partners.getPartners({ type: 'Partner' }).then(res => res.data),
+])
+---
+
+<Layout title="Strona główna" description="">
+  <h1 class="title">SkierCon 2023</h1>
+  <Tiles tiles={links.filter(x => x.size === 'large')} />
+  <Tiles tiles={links.filter(x => x.size === 'small')} small={true} />
+
+  <Partners title="Organizatorzy" partners={orgs} />
+  <Partners title="Partnerzy" partners={partners} />
+  <Partners title="Patroni medialni" partners={media} />
+
+  <style lang="scss">
+    .title {
+      font-size: 120px;
+    }
+  </style>
+</Layout>

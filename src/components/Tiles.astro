@@ -1,0 +1,132 @@
+---
+import type { LinkTileDto } from '../__gen-api'
+
+export interface Props {
+  tiles: LinkTileDto[]
+  small?: boolean
+}
+---
+
+<div class={`tiles ${Astro.props.small ? 'tiles--small' : ''}`}>
+  {
+    Astro.props.tiles.map((tile, i) => {
+      return (
+        <a href={tile.href} class="tile">
+          <div
+            class="img"
+            style={{ backgroundImage: `url(${tile.img.url})` }}
+          />
+          <div class="text">
+            <h3 class="title">{tile.title}</h3>
+          </div>
+        </a>
+      )
+    })
+  }
+</div>
+
+<style lang="scss">
+  @use 'sass-mq' as * with (
+    $breakpoints: (
+      mobile: 400px,
+      tablet: 768px,
+      desktop: 1140px,
+    )
+  );
+
+  .tiles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+
+    @include mq($until: tablet) {
+      padding: 20px;
+    }
+
+    &--small {
+      .tile {
+        width: calc(100% / 4 - 30px);
+
+        @include mq($until: desktop) {
+          width: calc(100% / 3 - 30px);
+        }
+
+        @include mq($until: tablet) {
+          width: 100%;
+        }
+      }
+
+      .img {
+        height: 100px;
+      }
+    }
+  }
+
+  .tile {
+    width: calc(100% / 3 - 20px);
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+    box-shadow: 4px 8px 14px 0px rgba(0, 0, 0, 0.61);
+
+    @include mq($until: desktop) {
+      width: calc(50% - 20px);
+    }
+
+    @include mq($until: tablet) {
+      width: 100%;
+    }
+
+    border-radius: 10px;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      height: 100px;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 1;
+      background-color: rgba(89, 131, 252, 0);
+      background-image: linear-gradient(
+        180deg,
+        rgba(89, 131, 252, 0) 0%,
+        rgba(3, 29, 34, 0.795) 60%
+      );
+    }
+
+    &:hover,
+    &:focus {
+      .img {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .text {
+    padding: 15px;
+    border-radius: 10px;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    font-size: 18px;
+
+    h3 {
+      margin: 0;
+      text-shadow: -2px -2px 5px rgb(0, 0, 0);
+    }
+  }
+
+  .img {
+    height: 300px;
+    background-position: center;
+    background-size: cover;
+    transition: transform 0.2s;
+  }
+</style>
