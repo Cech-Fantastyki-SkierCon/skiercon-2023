@@ -5,13 +5,14 @@
   "private": true,
   "scripts": {
     "dev": "node gen-api.cjs && astro dev",
-    "start": "node gen-api.cjs && astro dev",
+    "start": "node dist/server/entry.mjs",
     "build": "node gen-api.cjs && astro build",
     "preview": "node gen-api.cjs && astro preview",
     "astro": "node gen-api.cjs && astro"
   },
   "dependencies": {
-    "astro": "^1.9.0",
+    "@astrojs/node": "^4.0.0",
+    "astro": "^1.9.2",
     "axios": "^1.2.2",
     "normalize.css": "^8.0.1",
     "sass-mq": "^6.0.0"
