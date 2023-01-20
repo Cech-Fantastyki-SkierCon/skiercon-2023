@@ -5,7 +5,7 @@ const fs = require('fs')
 const axios = require('axios')
 
 axios
-  .get(process.env.VITE_API_URL.replace(/\/$/, '') + '/api-json')
+  .get(process.env.PUBLIC_API_URL.replace(/\/$/, '') + '/api-json')
   .then(res => {
     return generateApi({
       spec: res.data,

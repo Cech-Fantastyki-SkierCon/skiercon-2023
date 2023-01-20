@@ -8,8 +8,6 @@ const { title, description } = Astro.props
 
 import 'normalize.css'
 import 'sass-mq'
-import Nav from './Nav.astro'
-import Footer from './Footer.astro'
 ---
 
 <!DOCTYPE html>
@@ -53,30 +51,36 @@ import Footer from './Footer.astro'
     <meta name="msapplication-TileColor" content="#ffc40d" />
     <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
     <meta name="theme-color" content="#ffffff" />
-    <title>{title} - Skiercon 2023</title>
+    <title>{title} - Kongres 2023</title>
   </head>
-  <body class="body">
-    <Nav />
-    <main>
-      <slot />
-    </main>
-    <Footer />
+  <body class="body-kongres">
+    <slot />
   </body>
 </html>
 <style is:global lang="scss">
+  @tailwind base;
+
   :root {
     --bg1: #124757;
     --bg2: #196a78;
     --acc1: #cfc24f;
     --acc2: #a1a531;
     --acc3: #687818;
+
+    --kongres-0: #2b2d23;
+    --kongres-1: #4c4e45;
+    --kongres-2: #696c60;
+    --kongres-3: #bccf17;
+    --kongres-4: #bdbfb6;
+    --kongres-5: #57584f;
   }
 
-  .body {
+  .body-kongres {
     font-family: 'Poppins', sans-serif;
-    background: var(--bg1) url('/bcg.png');
-    color: rgb(218, 218, 218);
     line-height: 1.6;
     padding-top: 70px;
+    background-image: none;
+    background-color: var(--kongres-5);
+    color: var(--kongres-4);
   }
 </style>

@@ -1,5 +1,11 @@
-import { defineConfig } from 'astro/config'
-import node from '@astrojs/node'
+import { defineConfig } from 'astro/config';
+import node from '@astrojs/node';
+
+// https://astro.build/config
+import svelte from "@astrojs/svelte";
+
+// https://astro.build/config
+import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
@@ -7,10 +13,11 @@ export default defineConfig({
   trailingSlash: 'never',
   vite: {
     ssr: {
-      noExternal: ['sass-mq', 'normalize.css'],
-    },
+      noExternal: ['sass-mq', 'normalize.css']
+    }
   },
   adapter: node({
-    mode: 'standalone',
+    mode: 'standalone'
   }),
-})
+  integrations: [svelte(), tailwind()]
+});
