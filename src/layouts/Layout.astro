@@ -57,13 +57,15 @@ import Footer from './Footer.astro'
   </head>
   <body class="body">
     <Nav />
-    <main>
+    <main class="container mx-auto px-8">
       <slot />
     </main>
     <Footer />
   </body>
 </html>
 <style is:global lang="scss">
+  @tailwind base;
+
   :root {
     --bg1: #124757;
     --bg2: #196a78;
