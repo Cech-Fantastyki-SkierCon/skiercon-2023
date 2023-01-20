@@ -18,7 +18,7 @@ const small = partners.filter(p => p.size === 'small')
     .map(p => {
       return (
         <>
-          <h2 class="title">{title}</h2>
+          <h2 class="text-center text-4xl font-bold mt-20">{title}</h2>
           <div class:list={['images', `images--${p[0].size}`]}>
             {p.map(partner => {
               return (
@@ -45,15 +45,6 @@ const small = partners.filter(p => p.size === 'small')
     )
   );
 
-  .title,
-  .subtitle {
-    text-align: center;
-  }
-
-  .title {
-    font-size: 36px;
-  }
-
   .images {
     display: flex;
     flex-wrap: wrap;
@@ -62,14 +53,18 @@ const small = partners.filter(p => p.size === 'small')
     margin: 40px 0;
 
     img {
-      object-fit: cover;
+      object-fit: contain;
       height: 100%;
+      width: 100%;
+    }
+
+    .img-wrap {
+      background: white;
     }
 
     &--large {
       .img-wrap {
         width: calc(100% / 3 - 20px);
-        height: 350px;
 
         @include mq($until: desktop) {
           width: 100%;
@@ -81,7 +76,6 @@ const small = partners.filter(p => p.size === 'small')
     &--medium {
       .img-wrap {
         width: calc(100% / 5 - 24px);
-        height: 200px;
 
         @include mq($until: desktop) {
           width: calc(100% / 3 - 20px);
@@ -96,7 +90,6 @@ const small = partners.filter(p => p.size === 'small')
     &--small {
       .img-wrap {
         width: calc(100% / 7 - 30px);
-        height: 120px;
 
         @include mq($until: desktop) {
           width: calc(100% / 5 - 20px);
