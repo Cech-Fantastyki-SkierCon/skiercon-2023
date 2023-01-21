@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "node gen-api.cjs && astro dev",
     "start": "node dist/server/entry.mjs",
-    "start-prod": "HOST=54.37.235.215 node dist/server/entry.mjs",
     "build": "node gen-api.cjs && astro build",
     "preview": "node gen-api.cjs && astro preview",
     "astro": "node gen-api.cjs && astro"
