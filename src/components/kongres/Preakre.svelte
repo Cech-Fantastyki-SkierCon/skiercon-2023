@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { get } from 'svelte/store'
   import { api } from '../../api'
   import type { CreateTransactionKongres2023Dto } from '../../__gen-api'
 
@@ -8,6 +9,7 @@
     'full'
   let paper = 'yes'
   let user = ''
+  let sleepRoom = 'false'
 
   $: sum = (paper == 'yes' ? 10 : 0) + (accreditationType === 'full' ? 10 : 0)
 
@@ -17,6 +19,20 @@
 
   $: if (email === repeatEmail) {
     emailError = false
+  }
+
+  async function getRecaptchaToken(): Promise<string> {
+    return new Promise(resolve => {
+      // @ts-ignore
+      grecaptcha.ready(() => {
+        // @ts-ignore
+        grecaptcha
+          .execute(import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY, {
+            action: 'submit',
+          })
+          .then(resolve)
+      })
+    })
   }
 
   async function submit() {
@@ -33,13 +49,19 @@
     responseError = false
     loading = true
 
+    const captchaToken = await getRecaptchaToken()
+
     try {
       const res = await api.transactions.createTransactionKongres2023({
         email,
         accreditationType,
         koniunkcja: paper === 'yes',
+        sleepRoom: sleepRoom === 'true',
         user,
+        captchaToken,
       })
+
+      console.log(res.data.redirectUrl)
 
       window.location.replace(res.data.redirectUrl)
     } catch (err) {
@@ -56,10 +78,10 @@
   <label class="label">
     Rodzaj akredytacji: <span class="required">*</span>
     <select class="input select" bind:value={accreditationType}>
-      <option value="full">Pełna akredytacja (10,00 zł)</option>
-      <option value="program">Twórca programu (0,00 zł)</option>
+      <option value="full">Pełna akredytacja (+10,00 zł)</option>
+      <option value="program">Twórca programu (+0,00 zł)</option>
       <option value="member">
-        Członek lub rekrut Cechu Fantastyki "SkierCon" (0,00 zł)
+        Członek lub rekrut Cechu Fantastyki "SkierCon" (+0,00 zł)
       </option>
     </select>
   </label>
@@ -67,16 +89,16 @@
   <label class="label">
     Papierowy egzemplarz <b>KONiunkcji</b>: <span class="required">*</span>
     <select class="input select" bind:value={paper}>
-      <option value="yes">Tak (10,00 zł)</option>
-      <option value="no">Nie (0,00 zł)</option>
-    </select></label
-  >
+      <option value="yes">Tak (+10,00 zł)</option>
+      <option value="no">Nie (+0,00 zł)</option>
+    </select>
+  </label>
 
   <label class="label">
     Miejsce na sleeproomie: <span class="required">*</span>
-    <select class="input select">
-      <option value="yes">Tak (0,00 zł)</option>
-      <option value="no" selected>Nie (0,00 zł)</option>
+    <select class="input select" bind:value={sleepRoom}>
+      <option value="true">Tak (+0,00 zł)</option>
+      <option value="false" selected>Nie (+0,00 zł)</option>
     </select>
   </label>
 
