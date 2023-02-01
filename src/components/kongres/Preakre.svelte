@@ -60,8 +60,6 @@
         captchaToken,
       })
 
-      console.log(res.data.redirectUrl)
-
       window.location.replace(res.data.redirectUrl)
     } catch (err) {
       // TODO: handle error
@@ -76,7 +74,11 @@
 <form on:submit|preventDefault={submit}>
   <label class="label">
     Rodzaj akredytacji: <span class="required">*</span>
-    <select class="input select" bind:value={accreditationType}>
+    <select
+      class="input select"
+      bind:value={accreditationType}
+      disabled={loading}
+    >
       <option value="full">Pełna akredytacja (+10,00 zł)</option>
       <option value="program">Twórca programu (+0,00 zł)</option>
       <option value="member">
@@ -87,7 +89,7 @@
 
   <label class="label">
     Papierowy egzemplarz <b>KONiunkcji</b>: <span class="required">*</span>
-    <select class="input select" bind:value={paper}>
+    <select class="input select" bind:value={paper} disabled={loading}>
       <option value="yes">Tak (+10,00 zł)</option>
       <option value="no">Nie (+0,00 zł)</option>
     </select>
@@ -95,7 +97,7 @@
 
   <label class="label">
     Miejsce na sleeproomie: <span class="required">*</span>
-    <select class="input select" bind:value={sleepRoom}>
+    <select class="input select" bind:value={sleepRoom} disabled={loading}>
       <option value="true">Tak (+0,00 zł)</option>
       <option value="false" selected>Nie (+0,00 zł)</option>
     </select>
@@ -109,6 +111,7 @@
       type="text"
       autocomplete="given-name"
       class="input"
+      disabled={loading}
     />
   </label>
 
@@ -125,6 +128,7 @@
       inputmode="email"
       class="input"
       required
+      disabled={loading}
     />
   </label>
 
@@ -138,6 +142,7 @@
       inputmode="email"
       class="input"
       required
+      disabled={loading}
     />
     {#if emailError}
       <span
@@ -152,8 +157,8 @@
   <div class="mt-8 mb-12">
     {#if sum > 0}
       <label class="label label--checkbox">
-        <input type="checkbox" required class="checkbox" /> Oświadczam, że
-        zapoznałem się z
+        <input type="checkbox" required class="checkbox" disabled={loading} />
+        Oświadczam, że zapoznałem się z
         <a
           href="https://www.przelewy24.pl/regulamin"
           target="_blank"
@@ -170,8 +175,8 @@
       </label>
     {/if}
     <label class="label label--checkbox">
-      <input type="checkbox" required class="checkbox" /> Zapoznałem/am się
-      z&nbsp;
+      <input type="checkbox" required class="checkbox" disabled={loading} />
+      Zapoznałem/am się z&nbsp;
       <a
         href="https://cech.skiercon.pl/nasze-akcje/kongres-2023"
         target="_blank"
@@ -186,8 +191,8 @@
     </label>
 
     <label class="label label--checkbox">
-      <input type="checkbox" required class="checkbox" /> Wyrażam zgodę na
-      przetwarzanie moich danych osobowych zgodnie z&nbsp;<a
+      <input type="checkbox" required class="checkbox" disabled={loading} />
+      Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z&nbsp;<a
         href="https://www.skiercon.pl/cech/rodo"
         target="_blank"
         rel="noopener noreferrer"
@@ -198,8 +203,15 @@
     </label>
   </div>
 
-  <button type="submit" class="submit">
-    {#if sum > 0}
+  <button
+    type="submit"
+    class="submit"
+    class:opacity-60={loading}
+    class:cursor-wait={loading}
+  >
+    {#if loading}
+      Ładowanie...
+    {:else if sum > 0}
       Przejdź do płatności (<span class="price">{sum},00 zł</span>)
     {:else}
       Wyślij akredytację
@@ -266,7 +278,6 @@
     padding: 15px 40px;
     border: 2px solid var(--kongres-1);
     border-radius: 30px;
-    cursor: pointer;
     margin: 0 auto;
     display: block;
 
