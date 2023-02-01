@@ -1,5 +1,7 @@
 ---
 import Kongres from '@layouts/Kongres.astro'
+
+const free = Astro.url.searchParams.get('f')
 ---
 
 <Kongres title="Preakredytacja" description="Kup bilet on-line na Kongres 2023">
@@ -8,11 +10,24 @@ import Kongres from '@layouts/Kongres.astro'
       <h1 class="font-bold text-3xl mb-6">
         KONgres 2023 <span class="accent">Akredytacja</span>
       </h1>
-      <p>
-        Po zaksięgowaniu wpłaty na podany w zgłoszeniu adres <b>e-mail</b> zostanie
-        wysłany <b>kod QR</b>, który należy okazać przy akredytacji na konwent.
-        (Na wszelki wypadek sprawdź folder ze spamem)
-      </p>
+      {
+        free && (
+          <p>
+            Na podany w zgłoszeniu adres <b>e-mail</b> zostanie wysłany{' '}
+            <b>kod QR</b>, który należy okazać przy akredytacji na konwent. (Na
+            wszelki wypadek sprawdź folder ze spamem)
+          </p>
+        )
+      }
+      {
+        !free && (
+          <p>
+            Po zaksięgowaniu wpłaty na podany w zgłoszeniu adres <b>e-mail</b>{' '}
+            zostanie wysłany <b>kod QR</b>, który należy okazać przy akredytacji
+            na konwent. (Na wszelki wypadek sprawdź folder ze spamem)
+          </p>
+        )
+      }
     </div>
   </main>
 
