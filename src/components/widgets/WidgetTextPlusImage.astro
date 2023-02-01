@@ -1,0 +1,11 @@
+---
+import type { WidgetTextPlusImage } from 'src/__gen-api'
+export interface Props {
+  widget: WidgetTextPlusImage
+}
+
+const widget = Astro.props.widget
+---
+
+<Fragment set:html={widget.content} />
+<img src={widget.images[0].url} alt={widget.images[0].alt} />

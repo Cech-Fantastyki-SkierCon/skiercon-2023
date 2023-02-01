@@ -1,0 +1,15 @@
+---
+import type { WidgetLinkTiles } from 'src/__gen-api'
+export interface Props {
+  widget: WidgetLinkTiles
+}
+
+const widget = Astro.props.widget
+---
+
+<h2>{widget.title}</h2>
+{
+  widget.tiles.map(tile => {
+    return <div>{tile.title}</div>
+  })
+}

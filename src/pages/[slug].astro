@@ -1,19 +1,30 @@
 ---
-import { api } from '../api'
-import Tiles from '../components/Tiles.astro'
 import Layout from '../layouts/Layout.astro'
-import type { LinkTileDto } from '../__gen-api'
+import Widgets from '@components/Widgets.astro'
+import { api } from 'src/api'
+import axios from 'axios'
 
-const { slug } = Astro.params
-const data = await api.pages.getPageBySlug(slug!).then(res => res.data)
+const slug = Astro.params.slug!
+let page = null as unknown as Awaited<
+  ReturnType<typeof api.pages.getPageBySlug>
+>['data']
 
-let tiles: LinkTileDto[] = []
-if (slug === 'program') {
-  tiles = await api.linkTiles.getAllByType('programPage').then(res => res.data)
+try {
+  const res = await api.pages.getPageBySlug(slug)
+  page = res.data
+} catch (err) {
+  if (axios.isAxiosError(err)) {
+    return new Response('Nie znaleziono strony', {
+      status: 404,
+    })
+  } else {
+    return new Response('Wystąpił nieznany błąd', {
+      status: 500,
+    })
+  }
 }
 ---
 
-<Layout title={data.title} description={data.description}>
-  {tiles.length > 0 && <Tiles tiles={tiles} />}
-  <Fragment set:html={data.content} />
+<Layout title={page.title} description={page.description}>
+  <Widgets widgets={page.widgets} />
 </Layout>

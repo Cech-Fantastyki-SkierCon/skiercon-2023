@@ -1,0 +1,10 @@
+---
+import type { WidgetText } from 'src/__gen-api'
+export interface Props {
+  widget: WidgetText
+}
+
+const widget = Astro.props.widget
+---
+
+<Fragment set:html={widget.content} />

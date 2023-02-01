@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { get } from 'svelte/store'
   import { api } from '../../api'
   import type { CreateTransactionKongres2023Dto } from '../../__gen-api'
 

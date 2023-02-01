@@ -1,0 +1,28 @@
+---
+import type { PageDto } from 'src/__gen-api'
+import WidgetGallery from './widgets/WidgetGallery.astro'
+import WidgetLinkTiles from './widgets/WidgetLinkTiles.astro'
+import WidgetTextPlusImage from './widgets/WidgetTextPlusImage.astro'
+import WidgetText from './widgets/WidgetText.astro'
+
+export interface Props {
+  widgets: Array<PageDto['widgets']>
+}
+---
+
+{
+  Astro.props.widgets.map((widget) => {
+    switch (widget.type) {
+      case 'text':
+        return <WidgetText widget={widget} />
+      case 'textPlusImage':
+        return <WidgetTextPlusImage widget={widget} />
+      case 'linkTiles':
+        return <WidgetLinkTiles widget={widget} />
+      case 'gallery':
+        return <WidgetGallery widget={widget} />
+      default:
+        return <></>
+    }
+  })
+}

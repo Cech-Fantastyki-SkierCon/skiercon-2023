@@ -1,81 +1,40 @@
-<nav class="nav">
-  <div class="container">
-    <a href="/" class="main-link"> SkierCon 2023</a>
-    <ul class="list">
+<nav class="fixed w-full top-0 left-0 bg-cyan-800">
+  <div class="container flex justify-between">
+    <a href="/" class="block p-3 pl-0"> SkierCon 2023</a>
+    <ul class="flex">
       <li>
-        <a href="/program">Program</a>
+        <a class="block p-3 hover:bg-cyan-900 transition-all" href="/program">
+          Program</a
+        >
       </li>
       <li>
-        <a href="/goscie">Goście</a>
+        <a class="block p-3 hover:bg-cyan-900 transition-all" href="/goscie">
+          Goście</a
+        >
       </li>
       <li>
-        <a href="/akredytacja">Akredytacja</a>
+        <a
+          class="block p-3 hover:bg-cyan-900 transition-all"
+          href="/akredytacja"
+        >
+          Akredytacja
+        </a>
       </li>
       <li>
-        <a href="/kontakt">Kontakt</a>
+        <a class="block p-3 hover:bg-cyan-900 transition-all" href="/kontakt">
+          Kontakt</a
+        >
       </li>
       <li>
-        <a href="https://cech.skiercon.pl/">Cech</a>
+        <a
+          class="block p-3 hover:bg-cyan-900 transition-all"
+          href="https://cech.skiercon.pl/"
+        >
+          Cech
+        </a>
       </li>
     </ul>
   </div>
 </nav>
 
-<style lang="scss">
-  .nav {
-    background: var(--bg1);
-    position: fixed;
-    z-index: 3;
-    top: 0;
-    left: 0;
-    width: 100%;
-    border-bottom: 1px solid rgb(4, 30, 59);
-    a {
-      margin: 0 1rem;
-      color: rgba(255, 255, 255, 0.836);
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.2s;
-
-      &:hover {
-        color: #fff;
-      }
-    }
-  }
-
-  .container {
-    height: 70px;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .main-link {
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-  }
-
-  .logo-wrap {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    top: 20px;
-    left: 20px;
-  }
-
-  .logo {
-    width: 100%;
-    height: 150px;
-  }
-
-  .list {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-</style>
+<style lang="scss"></style>

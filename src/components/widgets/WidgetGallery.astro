@@ -1,0 +1,15 @@
+---
+import type { WidgetGallery } from 'src/__gen-api'
+export interface Props {
+  widget: WidgetGallery
+}
+
+const widget = Astro.props.widget
+---
+
+<h2>{widget.title}</h2>
+{
+  widget.images.map(image => {
+    return <img src={image.url} alt={image.alt} />
+  })
+}
