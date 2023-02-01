@@ -64,10 +64,9 @@
     } catch (err) {
       // TODO: handle error
       responseError = true
+      loading = false
       console.error(err)
     }
-
-    loading = false
   }
 </script>
 
