@@ -177,7 +177,7 @@
       <input type="checkbox" required class="checkbox" disabled={loading} />
       Zapoznałem/am się z&nbsp;
       <a
-        href="https://cech.skiercon.pl/nasze-akcje/kongres-2023"
+        href="https://cech.skiercon.pl/nasze-akcje/kongres-2023#h.fbm1a0thmvgo"
         target="_blank"
         rel="noopener noreferrer"
         class="link">Regulaminem KONgresu</a
@@ -192,7 +192,7 @@
     <label class="label label--checkbox">
       <input type="checkbox" required class="checkbox" disabled={loading} />
       Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z&nbsp;<a
-        href="https://www.skiercon.pl/cech/rodo"
+        href="https://cech.skiercon.pl/cech/rodo"
         target="_blank"
         rel="noopener noreferrer"
         class="link">klauzulą RODO</a

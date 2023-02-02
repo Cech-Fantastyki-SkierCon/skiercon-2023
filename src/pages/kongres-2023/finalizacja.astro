@@ -4,49 +4,43 @@ import Kongres from '@layouts/Kongres.astro'
 const free = Astro.url.searchParams.get('f')
 ---
 
-<Kongres title="Preakredytacja" description="Kup bilet on-line na Kongres 2023">
-  <main class="container mx-auto main">
-    <div class="columns-1">
-      <h1 class="font-bold text-3xl mb-6">
-        KONgres 2023 <span class="accent">Akredytacja</span>
-      </h1>
-      {
-        free && (
-          <p>
-            Na podany w zgłoszeniu adres <b>e-mail</b> zostanie wysłany{' '}
-            <b>kod QR</b>, który należy okazać przy akredytacji na konwent. (Na
-            wszelki wypadek sprawdź folder ze spamem)
+<Kongres title="Preakredytacja" description="Kup bilet on-line na KONgres 2023">
+  <main>
+    {
+      free && (
+        <>
+          <p class="mb-4">Dziękujemy za preakredytację!</p>
+          <p class="mb-4">
+            Wkrótce otrzymasz od nas maila z&nbsp;potwierdzeniem i
+            <b>kodem QR</b>, który należy okazać przy akredytacji,
+            aby&nbsp;otrzymać identyfikator.
           </p>
-        )
-      }
-      {
-        !free && (
-          <p>
-            Po zaksięgowaniu wpłaty na podany w zgłoszeniu adres <b>e-mail</b>{' '}
-            zostanie wysłany <b>kod QR</b>, który należy okazać przy akredytacji
-            na konwent. (Na wszelki wypadek sprawdź folder ze spamem)
+        </>
+      )
+    }
+    {
+      !free && (
+        <>
+          <p class="mb-4">Dziękujemy za złożenie zamówienia!</p>
+          <p class="mb-4">
+            Jak tylko wpłata zostanie zaksięgowana, otrzymasz od nas maila
+            z&nbsp;potwierdzeniem i&nbsp;<b>kodem QR</b>, który należy okazać
+            przy akredytacji, aby otrzymać identyfikator.
           </p>
-        )
-      }
-    </div>
+        </>
+      )
+    }
+    <p class="mb-4">
+      Minęło trochę czasu, a&nbsp;mail nadal nie dotarł? Sprawdź folder ze
+      spamem lub skontaktuj się z&nbsp;nami poprzez
+      <a href="mailto:kongres@skiercon.pl" class="accent">kongres@skiercon.pl</a
+      >
+    </p>
+    <p>Do zobaczenia na KONgresie 2023!</p>
   </main>
-
-  <footer class="text-center my-10">
-    <p>© SkierCon 2023</p>
-  </footer>
 </Kongres>
 
 <style lang="scss">
-  .main {
-    max-width: 550px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  .logo {
-    width: 200px;
-  }
-
   .accent {
     color: var(--kongres-3);
   }

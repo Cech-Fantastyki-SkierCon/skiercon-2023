@@ -55,7 +55,24 @@ import 'sass-mq'
     <title>{title} - Kongres 2023</title>
   </head>
   <body class="body-kongres">
-    <slot />
+    <div class="container-kongres">
+      <h1 class="font-bold text-3xl my-6">
+        <img
+          src="/KONgres2023.png"
+          class="mb-12"
+          alt="KONgres2023 | 22-23 kwietnia | Skierniewice"
+        />
+        <span class="accent">Preakredytacja</span>
+      </h1>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer class="text-center my-16 text-sm">
+        <p>© CF SkierCon 2023</p>
+      </footer>
+    </div>
   </body>
 </html>
 <style is:global lang="scss">
@@ -79,9 +96,15 @@ import 'sass-mq'
   .body-kongres {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
-    padding-top: 70px;
     background-image: none;
     background-color: var(--kongres-5);
     color: var(--kongres-4);
+    margin-top: 60px;
+  }
+
+  .container-kongres {
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 </style>

@@ -3,19 +3,8 @@ import Kongres from '@layouts/Kongres.astro'
 import Preakre from '@components/kongres/Preakre.svelte'
 ---
 
-<Kongres title="Preakredytacja" description="Kup bilet on-line na Kongres 2023">
-  <main class="container mx-auto main">
-    <div class="columns-1">
-      <h1 class="font-bold text-3xl mb-6">
-        KONgres 2023 <span class="accent">Akredytacja</span>
-      </h1>
-      <Preakre client:only="svelte" />
-    </div>
-  </main>
-
-  <footer class="text-center my-10">
-    <p>© CF SkierCon 2023</p>
-  </footer>
+<Kongres title="Preakredytacja" description="Kup bilet on-line na KONgres 2023">
+  <Preakre client:only="svelte" />
 </Kongres>
 
 <script
@@ -23,19 +12,3 @@ import Preakre from '@components/kongres/Preakre.svelte'
   defer
   src="https://www.google.com/recaptcha/api.js?render=6Lc4NhYkAAAAAKf5_0sROEuupWiuJRBVlBIBylYp"
 ></script>
-
-<style lang="scss">
-  .main {
-    max-width: 550px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  .logo {
-    width: 200px;
-  }
-
-  .accent {
-    color: var(--kongres-3);
-  }
-</style>
