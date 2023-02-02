@@ -11,14 +11,13 @@
   let sleepRoom = 'false'
 
   $: sum = (paper == 'yes' ? 10 : 0) + (accreditationType === 'full' ? 10 : 0)
+  $: memberEmailError =
+    accreditationType === 'member' && !email.endsWith('@skiercon.pl')
+  $: repeatEmailError = email !== repeatEmail
+  $: anyErrors = repeatEmailError || memberEmailError
 
-  let emailError = false
   let responseError = false
   let loading = false
-
-  $: if (email === repeatEmail) {
-    emailError = false
-  }
 
   async function getRecaptchaToken(): Promise<string> {
     return new Promise(resolve => {
@@ -35,8 +34,7 @@
   }
 
   async function submit() {
-    if (email !== repeatEmail) {
-      emailError = true
+    if (anyErrors) {
       return
     }
 
@@ -44,7 +42,6 @@
       return
     }
 
-    emailError = false
     responseError = false
     loading = true
 
@@ -130,6 +127,12 @@
       required
       disabled={loading}
     />
+    {#if memberEmailError}
+      <span class="text-red-200 text-sm">
+        Aby skorzystać z darmowej akredytacji, użyj swojego adresu email
+        z&nbsp;domeny @skiercon.pl
+      </span>
+    {/if}
   </label>
 
   <label class="label">
@@ -144,9 +147,9 @@
       required
       disabled={loading}
     />
-    {#if emailError}
+    {#if repeatEmailError}
       <span
-        class="error"
+        class="text-red-200 text-sm"
         aria-errormessage="Adresy e-mail muszą być jednakowe!"
       >
         Adresy e-mail muszą być jednakowe!
@@ -203,11 +206,24 @@
     </label>
   </div>
 
+  {#if anyErrors}
+    <p class="text-center my-8 text-red-200">
+      W formularzu występują błędy. Prosimy o ich poprawienie.
+    </p>
+  {/if}
+
+  {#if responseError}
+    <p class="text-center my-8 text-red-200">
+      Wystąpił nieznany błąd, prosimy spróbować później.
+    </p>
+  {/if}
+
   <button
     type="submit"
     class="submit"
     class:opacity-60={loading}
     class:cursor-wait={loading}
+    class:cursor-not-allowed={anyErrors}
   >
     {#if loading}
       Ładowanie...
@@ -217,12 +233,6 @@
       Wyślij akredytację
     {/if}
   </button>
-
-  {#if responseError}
-    <p class="text-center my-10 text-red-300">
-      Wystąpił nieznany błąd, prosimy spróbować później.
-    </p>
-  {/if}
 </form>
 
 <style lang="scss">
@@ -255,10 +265,6 @@
     &:focus {
       outline: var(--kongres-4) solid 2px;
     }
-  }
-
-  .error {
-    color: white;
   }
 
   .checkbox {
