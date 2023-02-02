@@ -111,6 +111,7 @@
       autocomplete="given-name"
       class="input"
       disabled={loading}
+      maxlength="60"
     />
   </label>
 
@@ -218,7 +219,7 @@
   </button>
 
   {#if responseError}
-    <p class="text-center my-10">
+    <p class="text-center my-10 text-red-300">
       Wystąpił nieznany błąd, prosimy spróbować później.
     </p>
   {/if}
