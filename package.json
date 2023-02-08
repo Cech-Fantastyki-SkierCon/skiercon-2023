@@ -19,7 +19,8 @@
     "normalize.css": "^8.0.1",
     "sass-mq": "^6.0.0",
     "svelte": "^3.55.1",
-    "tailwindcss": "^3.2.4"
+    "tailwindcss": "^3.2.4",
+    "wysiwyg.css": "^0.0.4"
   },
   "devDependencies": {
     "dotenv": "^16.0.3",

@@ -1,15 +1,39 @@
 ---
-import type { WidgetLinkTiles } from 'src/__gen-api'
+import type { WidgetLinkTiles, LinkTileDto } from 'src/__gen-api'
 export interface Props {
   widget: WidgetLinkTiles
 }
 
 const widget = Astro.props.widget
+
+const size: Record<LinkTileDto['size'], string> = {
+  large: 'w-full md:w-1/2 lg:w-1/2',
+  medium: 'w-full md:w-1/3 lg:w-1/4',
+  small: 'w-1/2 md:w-1/4 lg:w-1/6',
+}
 ---
 
-<h2>{widget.title}</h2>
-{
-  widget.tiles.map(tile => {
-    return <div>{tile.title}</div>
-  })
-}
+<h2 class="text-4xl font-bold text-center mb-10">{widget.title}</h2>
+
+<ul class="flex flex-wrap gap-10 justify-center">
+  {
+    widget.linkTiles.map(tile => {
+      return (
+        <li class={size[tile.size]}>
+          <a
+            href={tile.href ?? '#'}
+            target={tile.openInNewTab ? '_blank' : '_self'}
+            class="h-full relative"
+          >
+            <img src={tile.image.url} alt={tile.image.url} class="w-full" />
+            {tile.showTitle && (
+              <p class="text-2xl absolute bottom-2 w-full text-center drop-shadow-lg">
+                {tile.title}
+              </p>
+            )}
+          </a>
+        </li>
+      )
+    })
+  }
+</ul>

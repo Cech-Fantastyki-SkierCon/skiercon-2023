@@ -4,6 +4,7 @@ import WidgetGallery from './widgets/WidgetGallery.astro'
 import WidgetLinkTiles from './widgets/WidgetLinkTiles.astro'
 import WidgetTextPlusImage from './widgets/WidgetTextPlusImage.astro'
 import WidgetText from './widgets/WidgetText.astro'
+import WidgetFullImages from './widgets/WidgetFullImages.astro'
 
 export interface Props {
   widgets: Array<PageDto['widgets']>
@@ -21,8 +22,10 @@ export interface Props {
         return <WidgetLinkTiles widget={widget} />
       case 'gallery':
         return <WidgetGallery widget={widget} />
+      case 'fullImages':
+        return <WidgetFullImages widget={widget} />
       default:
         return <></>
     }
-  })
+  }).map(widget => <div class="widget my-24">{widget}</div>)
 }

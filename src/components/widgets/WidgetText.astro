@@ -1,4 +1,5 @@
 ---
+import { fixOrphans } from 'src/utils'
 import type { WidgetText } from 'src/__gen-api'
 export interface Props {
   widget: WidgetText
@@ -7,4 +8,6 @@ export interface Props {
 const widget = Astro.props.widget
 ---
 
-<Fragment set:html={widget.content} />
+<div class="wysiwyg max-w-3xl">
+  <Fragment set:html={fixOrphans(widget.content)} />
+</div>

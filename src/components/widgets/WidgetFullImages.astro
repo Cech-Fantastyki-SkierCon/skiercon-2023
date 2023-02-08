@@ -1,0 +1,14 @@
+---
+import type { WidgetFullImages } from 'src/__gen-api'
+export interface Props {
+  widget: WidgetFullImages
+}
+
+const widget = Astro.props.widget
+---
+
+{
+  widget.images.map(image => {
+    return <img src={image.url} alt={image.alt} class="w-full" />
+  })
+}

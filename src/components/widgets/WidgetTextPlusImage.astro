@@ -1,4 +1,5 @@
 ---
+import { fixOrphans } from 'src/utils'
 import type { WidgetTextPlusImage } from 'src/__gen-api'
 export interface Props {
   widget: WidgetTextPlusImage
@@ -7,5 +8,17 @@ export interface Props {
 const widget = Astro.props.widget
 ---
 
-<Fragment set:html={widget.content} />
-<img src={widget.images[0].url} alt={widget.images[0].alt} />
+<div class="flex lg:gap-12 flex-col lg:flex-row">
+  <div class="wysiwyg lg:w-1/2">
+    <Fragment set:html={fixOrphans(widget.content)} />
+  </div>
+  <div class="lg:w-1/2">
+    <div class="h-full flex flex-col items-center">
+      {
+        widget.images.map(image => (
+          <img src={image.url} alt={image.alt} loading="lazy" class="mt-10" />
+        ))
+      }
+    </div>
+  </div>
+</div>
