@@ -7,7 +7,7 @@ export interface Props {
 const widget = Astro.props.widget
 
 const size: Record<LinkTileDto['size'], string> = {
-  large: 'w-full md:w-1/2 lg:w-1/2',
+  large: 'w-full md:w-1/2 lg:w-1/3',
   medium: 'w-full md:w-1/3 lg:w-1/4',
   small: 'w-1/2 md:w-1/4 lg:w-1/6',
 }
@@ -15,11 +15,11 @@ const size: Record<LinkTileDto['size'], string> = {
 
 <h2 class="text-4xl font-bold text-center mb-10">{widget.title}</h2>
 
-<ul class="flex flex-wrap gap-10 justify-center">
+<ul class="flex flex-wrap justify-center">
   {
     widget.linkTiles.map(tile => {
       return (
-        <li class={size[tile.size]}>
+        <li class={'item ' + size[tile.size]}>
           <a
             href={tile.href ?? '#'}
             target={tile.openInNewTab ? '_blank' : '_self'}
@@ -37,3 +37,12 @@ const size: Record<LinkTileDto['size'], string> = {
     })
   }
 </ul>
+
+<style>
+  .flex {
+    margin: 0 -10px;
+  }
+  .item {
+    padding: 10px;
+  }
+</style>
