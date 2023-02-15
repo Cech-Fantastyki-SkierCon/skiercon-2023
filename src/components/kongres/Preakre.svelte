@@ -207,7 +207,7 @@
         target="_blank"
         rel="noopener noreferrer"
         class="link">Regulamin sprzedaży towarów i&nbsp;usług</a
-      ><span class="required">*</span>
+      >. <span class="required">*</span>
     </label>
   </div>
 
