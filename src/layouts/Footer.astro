@@ -1,10 +1,33 @@
 <footer class="bg-cyan-900 py-10">
-  <!-- <div class="container flex justify-between">
-    <div>
-      <img src="/logo.png" alt="" class="" />
+  <div class="container flex justify-between">
+    <div class="hidden lg:block">
+      <img src="/logo.png" alt="" class="logo" />
     </div>
     <div class="flex justify-between gap-8">
       <nav class="">
+        <h2 class="text-xl font-bold mb-2">Informacje</h2>
+        <ul class="">
+          <li>
+            <a class="hover:underline" href="https://skiercon.pl/regulamin"
+              >Regulamin konwentu</a
+            >
+          </li>
+          <li>
+            <a
+              class="hover:underline"
+              href="https://cech.skiercon.pl/cech/rodo ">Polityka prywatności</a
+            >
+          </li>
+          <li>
+            <a
+              class="hover:underline"
+              href="https://cech.skiercon.pl/cech/regulamin-sprzedaży"
+              >Regulamin sprzedaży</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <!-- <nav class="">
         <h2 class="text-xl font-bold mb-2">Informacje</h2>
         <ul class="">
           <li>
@@ -44,9 +67,9 @@
             <a class="" href="/sesje-rpg-i-larpy">Sesje RPG i LARP-y</a>
           </li>
         </ul>
-      </nav>
+      </nav> -->
     </div>
-  </div> -->
+  </div>
 
   <div
     class="container flex flex-col justify-between text-sm mt-20 md:flex-row"
@@ -87,4 +110,8 @@
   </div>
 </footer>
 
-<style lang="scss"></style>
+<style lang="scss">
+  .logo {
+    filter: drop-shadow(0 0 0.5rem #000000);
+  }
+</style>
