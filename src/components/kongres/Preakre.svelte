@@ -195,14 +195,19 @@
 
     <label class="label label--checkbox">
       <input type="checkbox" required class="checkbox" disabled={loading} />
-      Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z&nbsp;<a
+      Wyrażam zgodę na przetwarzanie moich danych zgodnie z&nbsp;<a
         href="https://cech.skiercon.pl/cech/rodo"
         target="_blank"
         rel="noopener noreferrer"
-        class="link">klauzulą RODO</a
+        class="link">Polityką Prywatności</a
       >
-      w&nbsp;celu realizacji preakredytacji.&nbsp;<span class="required">*</span
-      >
+      oraz akceptuję
+      <a
+        href="https://cech.skiercon.pl/cech/regulamin-sprzedaży"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="link">Regulamin sprzedaży towarów i&nbsp;usług</a
+      ><span class="required">*</span>
     </label>
   </div>
 
