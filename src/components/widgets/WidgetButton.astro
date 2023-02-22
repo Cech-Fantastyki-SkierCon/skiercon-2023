@@ -1,0 +1,19 @@
+---
+import { fixOrphans } from 'src/utils'
+import type { WidgetButton, WidgetText } from 'src/__gen-api'
+export interface Props {
+  widget: WidgetButton
+}
+
+const widget = Astro.props.widget
+---
+
+<div class="flex justify-center">
+  <a
+    href={widget.url}
+    target={widget.openInNewTab ? '_blank' : '_self'}
+    class="py-5 px-10 bg-cyan-700 text-white text-xl hover:bg-cyan-800 transition-all"
+  >
+    {widget.title}
+  </a>
+</div>
