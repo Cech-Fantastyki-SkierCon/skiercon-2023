@@ -27,9 +27,18 @@ const size: Record<LinkTileDto['size'], string> = {
           <a
             href={tile.href ?? '#'}
             target={tile.openInNewTab ? '_blank' : '_self'}
-            class="h-full relative"
+            class={
+              'relative block ' +
+              (tile.border
+                ? 'border-2 border-solid border-cyan-700 shadow-lg shadow-black  hover:shadow-cyan-900 transition-all'
+                : '')
+            }
           >
-            <img src={tile.image.url} alt={tile.image.url} class="w-full" />
+            <img
+              src={tile.image.url}
+              alt={tile.image.url}
+              class="w-full block"
+            />
             {tile.showTitle && (
               <p class="text-2xl absolute bottom-2 w-full text-center drop-shadow-lg">
                 {tile.title}
