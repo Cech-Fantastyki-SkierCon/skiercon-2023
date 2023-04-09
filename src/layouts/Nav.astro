@@ -10,39 +10,51 @@
   })
 </script>
 
-<nav class="fixed z-10 w-full top-0 left-0 bg-cyan-800">
-  <div class="container flex justify-between">
-    <a href="/" class="block p-3 pl-0"> SkierCon 2023</a>
+<nav class="h-12 md:h-auto fixed z-10 w-full top-0 left-0 bg-cyan-800">
+  <div class="container flex justify-between items-center h-full">
+    <a href="/" class="flex items-center first-letter:pl-0"
+      ><img src="/logo.png" alt="" class="logo w-8 h-8 mr-2 md:w-10 md:h-10" /> SkierCon
+      2023</a
+    >
     <ul
       id="menu"
       class="flex flex-col translate-x-full transition-all text-center absolute left-0 top-12 w-screen h-screen bg-cyan-800 md:relative md:flex-row md:bg-transparent md:h-auto md:translate-x-0 md:w-auto md:flex md:top-0"
     >
       <li>
-        <a class="block p-3 hover:bg-cyan-900 transition-all" href="/program">
+        <a
+          class="block h-full p-3 hover:bg-cyan-900 transition-all"
+          href="/program"
+        >
           Program</a
         >
       </li>
       <li>
-        <a class="block p-3 hover:bg-cyan-900 transition-all" href="/goscie">
+        <a
+          class="block h-full p-3 hover:bg-cyan-900 transition-all"
+          href="/goscie"
+        >
           Goście</a
         >
       </li>
       <li>
         <a
-          class="block p-3 hover:bg-cyan-900 transition-all"
+          class="block h-full p-3 hover:bg-cyan-900 transition-all"
           href="/akredytacja"
         >
           Akredytacja
         </a>
       </li>
       <li>
-        <a class="block p-3 hover:bg-cyan-900 transition-all" href="/kontakt">
+        <a
+          class="block h-full p-3 hover:bg-cyan-900 transition-all"
+          href="/kontakt"
+        >
           Kontakt</a
         >
       </li>
       <li>
         <a
-          class="block p-3 hover:bg-cyan-900 transition-all"
+          class="block p-3 h-12 hover:bg-cyan-900 transition-all"
           href="https://cech.skiercon.pl/"
         >
           Cech
@@ -77,5 +89,8 @@
         top: -8px;
       }
     }
+  }
+  .logo {
+    filter: drop-shadow(0 0 0.3rem #000000);
   }
 </style>
