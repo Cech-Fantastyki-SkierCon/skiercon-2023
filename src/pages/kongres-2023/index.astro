@@ -1,14 +1,17 @@
 ---
 import Kongres from '@layouts/Kongres.astro'
-import Preakre from '@components/kongres/Preakre.svelte'
 ---
 
 <Kongres title="Preakredytacja" description="Kup bilet on-line na KONgres 2023">
-  <Preakre client:only="svelte" />
+  <p class="mb-4">Preakredytacja na KONgres zakończyła się.</p>
+  <p class="mb-4">
+    W piątek (21 kwietnia) będzie można zakredytować się na sleep-roomie
+    (dotyczy osób chcących skorzystać z noclegu).
+  </p>
+  <p class="mb-4">
+    W sobotę (22 kwietnia) będzie można zakredytować się w&nbsp;budynku Centrum
+    Kultury i Sztuki.
+  </p>
+  <p class="mb-4">Liczba miejsc jest <b>nieograniczona</b>.</p>
+  <p class="mb-4">Koszt akredytacji na KONgres 2023: <b>10,00 zł</b></p>
 </Kongres>
-
-<script
-  async
-  defer
-  src="https://www.google.com/recaptcha/api.js?render=6Lc4NhYkAAAAAKf5_0sROEuupWiuJRBVlBIBylYp"
-></script>
