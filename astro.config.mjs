@@ -13,7 +13,7 @@ export default defineConfig({
   trailingSlash: 'never',
   vite: {
     ssr: {
-      noExternal: ['sass-mq', 'normalize.css', 'wysiwyg.css'],
+      noExternal: ['wysiwyg.css'],
     },
   },
   adapter: node({
