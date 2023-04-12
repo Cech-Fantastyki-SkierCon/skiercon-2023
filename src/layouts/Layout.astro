@@ -10,6 +10,7 @@ import 'normalize.css'
 import 'sass-mq'
 import Nav from './Nav.astro'
 import Footer from './Footer.astro'
+import Cookies from '@components/Cookies.astro'
 ---
 
 <!DOCTYPE html>
@@ -78,6 +79,7 @@ import Footer from './Footer.astro'
       <slot />
     </main>
     <Footer />
+    <Cookies />
   </body>
 </html>
 <style is:global lang="scss">
