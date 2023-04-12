@@ -9,6 +9,6 @@ const widget = Astro.props.widget
 
 {
   widget.images.map(image => {
-    return <img src={image.url} alt={image.alt} class="w-full" />
+    return <img src={image.url} alt={image.alt} class="w-full" loading="lazy" />
   })
 }
