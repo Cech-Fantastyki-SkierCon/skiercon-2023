@@ -6,7 +6,6 @@ export interface Props {
 
 const { title, description } = Astro.props
 
-
 import Nav from './Nav.astro'
 import Footer from './Footer.astro'
 import Cookies from '@components/Cookies.astro'
@@ -52,7 +51,7 @@ import Cookies from '@components/Cookies.astro'
     <title>{title} - Skiercon 2023</title>
 
     {import.meta.env.PUBLIC_GTM && (
-      <script>
+      <script is:inline>
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -63,13 +62,13 @@ import Cookies from '@components/Cookies.astro'
   </head>
   <body class="body">
     {import.meta.env.PUBLIC_GTM && (
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-WV64ZRJ"
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"></iframe></noscript
-    >
+      <noscript>
+        <iframe
+          src="https://www.googletagmanager.com/ns.html?id=GTM-WV64ZRJ"
+          height="0"
+          width="0"
+          style="display:none;visibility:hidden"></iframe>
+      </noscript>
     )}
     <Nav />
     <main class="container">
