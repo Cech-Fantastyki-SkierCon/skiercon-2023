@@ -14,6 +14,9 @@ import partytown from '@astrojs/partytown'
 import compress from 'astro-compress'
 
 // https://astro.build/config
+import robotsTxt from 'astro-robots-txt'
+
+// https://astro.build/config
 export default defineConfig({
   site: 'https://skiercon.pl',
   output: 'server',
@@ -39,5 +42,6 @@ export default defineConfig({
       img: false,
       js: false,
     }),
+    robotsTxt(),
   ],
 })
