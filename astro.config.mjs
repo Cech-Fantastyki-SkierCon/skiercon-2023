@@ -11,6 +11,9 @@ import tailwind from '@astrojs/tailwind'
 import partytown from '@astrojs/partytown'
 
 // https://astro.build/config
+import compress from 'astro-compress'
+
+// https://astro.build/config
 export default defineConfig({
   site: 'https://skiercon.pl',
   output: 'server',
@@ -30,6 +33,11 @@ export default defineConfig({
       config: {
         forward: ['dataLayer.push'],
       },
+    }),
+    compress({
+      svg: false,
+      img: false,
+      js: false,
     }),
   ],
 })
