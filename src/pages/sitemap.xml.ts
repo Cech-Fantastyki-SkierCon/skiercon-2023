@@ -23,5 +23,8 @@ export const get: APIRoute = async () => {
 
   return new Response(wrapInUrlset(pages), {
     status: 200,
+    headers: {
+      'Content-Type': 'application/xml',
+    },
   })
 }
