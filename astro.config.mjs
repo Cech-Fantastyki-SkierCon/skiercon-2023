@@ -42,6 +42,8 @@ export default defineConfig({
       img: false,
       js: false,
     }),
-    robotsTxt(),
+    robotsTxt({
+      sitemapBaseFileName: 'sitemap.xml',
+    }),
   ],
 })
