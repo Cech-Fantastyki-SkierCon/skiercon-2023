@@ -36,7 +36,9 @@ const size: Record<LinkTileDto['size'], string> = {
           >
             <img
               src={tile.image.url}
-              alt={tile.image.alt ?? ''}
+              alt={tile.showTitle ? '' : tile.title}
+              width={tile.image.meta.width}
+              height={tile.image.meta.height}
               class="w-full block"
               loading="lazy"
             />

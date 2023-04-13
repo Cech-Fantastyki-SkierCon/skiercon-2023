@@ -3,6 +3,7 @@ import Layout from '@layouts/Layout.astro'
 import { api } from 'src/api'
 const { data } = await api.programSpeakers.all()
 const guests = data.filter(speaker => speaker.guest)
+console.log(guests.map(guest => guest.image))
 ---
 
 <Layout
@@ -18,7 +19,8 @@ const guests = data.filter(speaker => speaker.guest)
           <div>
             <img
               src={guest.image.url}
-              width="300"
+              width={guest.image.meta.width}
+              height={guest.image.meta.height}
               height="300"
               alt={guest.name}
               class="w-full xs:w-50"

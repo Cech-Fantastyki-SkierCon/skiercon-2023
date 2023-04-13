@@ -16,7 +16,14 @@ const widget = Astro.props.widget
     <div class="h-full flex flex-col items-center">
       {
         widget.images.map(image => (
-          <img src={image.url} alt={image.alt} loading="lazy" class="mt-10" />
+          <img
+            src={image.url}
+            alt={image.alt}
+            width={image.meta.width}
+            height={image.meta.height}
+            loading="lazy"
+            class="mt-10"
+          />
         ))
       }
     </div>
