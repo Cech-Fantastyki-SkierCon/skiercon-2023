@@ -6,6 +6,6 @@ import { api } from 'src/api'
 const { data: page } = await api.pages.getPageBySlug('home')
 ---
 
-<Layout title={page.title} description={page.description}>
+<Layout title={''} description={page.description}>
   <Widgets widgets={page.widgets} />
 </Layout>
