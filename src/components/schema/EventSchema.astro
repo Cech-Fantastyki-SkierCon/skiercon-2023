@@ -1,0 +1,84 @@
+---
+import type { Event } from 'schema-dts'
+
+export const eventSchema: Event = {
+  '@type': 'Event',
+  name: 'SkierCon 2023',
+  about: 'Konwent fantastyki w Skierniewicach',
+  description:
+    'SkierCon to kraina serkiem i jogurtem płynąca, do której w ostatni weekend lipca zjeżdżają się wędrowcy z bliska i z daleka. Ogromna drużyna śmiałków zbiera się, by przeżywać wspólne przygody, stawiać czoła wyzwaniom dla ciała i dla umysłu, uczyć się od Mędrców i odkrywać prawdziwą magię. Znajdziesz u nas wszystko to, czego potrzebujesz od wymarzonego konwentu, i jeszcze szczyptę czarów do tego.',
+  url: 'https://skiercon.pl',
+  inLanguage: 'pl',
+  audience: {
+    '@type': 'Audience',
+    audienceType: 'public',
+  },
+  typicalAgeRange: '13+',
+  offers: {
+    '@type': 'Offer',
+    price: '50',
+    priceCurrency: 'PLN',
+    url: 'https://skiercon.pl/akredytacja',
+    availability: 'https://schema.org/InStock',
+    acceptedPaymentMethod: [
+      {
+        '@type': 'PaymentMethod',
+        name: 'Cash',
+      },
+      {
+        '@type': 'PaymentMethod',
+        name: 'BLIK',
+      },
+    ],
+    itemOffered: {
+      '@type': 'Product',
+      name: 'Akredytacja na SkierCon 2023',
+      description: 'Akredytacja za pełne trzy dni konwentu',
+    },
+  },
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventSchedule: {
+    '@type': 'Schedule',
+    startDate: '2023-07-28',
+    endDate: '2023-07-30',
+    scheduleTimezone: 'Europe/Warsaw',
+  },
+  location: {
+    '@type': 'Place',
+    name: 'Centrum Kultury i Sztuki w Skierniewicach',
+    alternateName: 'CKiS',
+    sameAs: 'https://cekis.pl/',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'PL',
+      addressLocality: 'Skierniewice',
+      streetAddress: 'ul. Reymonta 33',
+      addressRegion: 'Łódzkie',
+      postalCode: '96-100',
+    },
+  },
+  organizer: {
+    '@type': 'Organization',
+    name: 'Cech Fantastyki „SkierCon”',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'PL',
+      addressLocality: 'Skierniewice',
+      streetAddress: 'ul. Mszczonowska 25/3',
+      addressRegion: 'Łódzkie',
+      postalCode: '96-100',
+    },
+    email: 'kontakt@skiercon.pl',
+    url: 'https://cech.skiercon.pl',
+    taxID: '836-185-99-43',
+  },
+}
+const JSONLD = JSON.stringify({
+  '@context': 'https://schema.org',
+  ...eventSchema,
+})
+
+const script = `<script type="application/ld+json">${JSONLD}</script>`
+---
+
+<Fragment set:html={script} />

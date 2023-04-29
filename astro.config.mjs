@@ -23,7 +23,7 @@ export default defineConfig({
   trailingSlash: 'never',
   vite: {
     ssr: {
-      noExternal: ['wysiwyg.css'],
+      noExternal: ['wysiwyg.css', 'astro-seo-schema'],
     },
   },
   adapter: node({
