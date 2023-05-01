@@ -13,6 +13,7 @@ export const eventSchema: Event = {
     '@type': 'Audience',
     audienceType: 'public',
   },
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   typicalAgeRange: '13+',
   offers: {
     '@type': 'Offer',
@@ -20,6 +21,7 @@ export const eventSchema: Event = {
     priceCurrency: 'PLN',
     url: 'https://skiercon.pl/akredytacja',
     availability: 'https://schema.org/InStock',
+    validFrom: '2022-05-15T16:00:00+02:00',
     acceptedPaymentMethod: [
       {
         '@type': 'PaymentMethod',
@@ -37,12 +39,8 @@ export const eventSchema: Event = {
     },
   },
   eventStatus: 'https://schema.org/EventScheduled',
-  eventSchedule: {
-    '@type': 'Schedule',
-    startDate: '2023-07-28',
-    endDate: '2023-07-30',
-    scheduleTimezone: 'Europe/Warsaw',
-  },
+  startDate: '2023-07-28T16:00:00+02:00',
+  endDate: '2023-07-30T16:00:00+02:00',
   location: {
     '@type': 'Place',
     name: 'Centrum Kultury i Sztuki w Skierniewicach',
