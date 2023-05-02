@@ -16,7 +16,7 @@ console.log(guests.map(guest => guest.image))
     guests.map(guest => {
       return (
         <div class="flex flex-col md:flex-row my-10 md:gap-10">
-          <div>
+          <div class="w-48">
             <img
               src={guest.image.url}
               width={guest.image.meta.width}
@@ -29,7 +29,8 @@ console.log(guests.map(guest => guest.image))
           </div>
           <div>
             <h2 class="text-2xl mt-8 md:mt-0">
-              {guest.name} {guest.nick ? `"${guest.nick}"` : ''}
+              {guest.name} {guest.nick ? `"${guest.nick}"` : ''}{' '}
+              {guest.lastName ? guest.lastName : ''}
             </h2>
             <div class="wysiwyg mt-2">
               <Fragment set:html={guest.description} />
