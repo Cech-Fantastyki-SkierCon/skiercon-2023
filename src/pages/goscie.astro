@@ -3,37 +3,36 @@ import Layout from '@layouts/Layout.astro'
 import { api } from 'src/api'
 const { data } = await api.programSpeakers.all()
 const guests = data.filter(speaker => speaker.guest)
-console.log(guests.map(guest => guest.image))
 ---
 
 <Layout
   title="Goście"
   description="Poznaj niezwykłych, magicznych, szalonych i pełnych pasji. Goście SkierConu polecają się na panele dyskusyjne o tematach ważkich i ważnych, wyjątkowe prelekcje i wciągające warsztaty. Oraz do rozmów przy herbatce (jaśminowej). Sprawdźcie kogo będziecie mieli okazję spotkać na tegorocznym konwencie letniego chilloutu."
 >
-  <h1 class="mt-24 mb-20 text-4xl font-bold">Goście SkierConu</h1>
-
+  <h1 class="mt-24 mb-4 text-4xl font-bold">Goście SkierConu</h1>
+  <p class="mb-24">W tym roku obecnością zaszczycą nas:</p>
   {
     guests.map(guest => {
       return (
-        <div class="flex flex-col md:flex-row my-10 md:gap-10">
-          <div class="w-48">
+        <div class="flex flex-col md:flex-row my-10 md:gap-10 mb-24">
+          <div class="w-full md:w-1/4">
             <img
               src={guest.image.url}
               width={guest.image.meta.width}
               height={guest.image.meta.height}
               height="300"
               alt={guest.name}
-              class="w-full xs:w-50"
+              class="w-full"
               loading="lazy"
             />
           </div>
-          <div>
-            <h2 class="text-2xl mt-8 md:mt-0">
-              {guest.name} {guest.nick ? `"${guest.nick}"` : ''}{' '}
+          <div class="w-full md:w-3/4">
+            <h2 class="text-2xl mt-8 md:mt-0 font-bold">
+              {guest.name} {guest.nick ? `"${guest.nick}"` : ''}
               {guest.lastName ? guest.lastName : ''}
             </h2>
-            <div class="wysiwyg mt-2">
-              <Fragment set:html={guest.description} />
+            <div class="wysiwyg mt-2 overflow-hidden">
+              <Fragment set:html={guest.description?.trim()} />
             </div>
           </div>
         </div>
