@@ -1,7 +1,12 @@
 ---
 import type { Event } from 'schema-dts'
+import type { ProgramSpeakerDto } from 'src/__gen-api'
 
-export const eventSchema: Event = {
+export interface Props {
+  guests: ProgramSpeakerDto[]
+}
+
+const eventSchema: Event = {
   '@type': 'Event',
   name: 'SkierCon 2023',
   about: 'Konwent fantastyki w Skierniewicach',
@@ -15,6 +20,15 @@ export const eventSchema: Event = {
   },
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   typicalAgeRange: '13+',
+  performer: Astro.props.guests.map(speaker => {
+    return {
+      '@type': 'Person',
+      name: speaker.name,
+      familyName: speaker.lastName,
+      image: speaker.image.url,
+      additionalName: speaker.nick,
+    }
+  }),
   offers: {
     '@type': 'Offer',
     price: '50',

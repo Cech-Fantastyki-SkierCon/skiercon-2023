@@ -4,12 +4,15 @@ export interface Props {
   description: string
 }
 
+const { data: programSpeakers } = await api.programSpeakers.all()
+const guests = programSpeakers.filter(speaker => speaker.guest)
 const { title, description } = Astro.props
 
 import Nav from './Nav.astro'
 import Footer from './Footer.astro'
 import Cookies from '@components/Cookies.astro'
 import EventSchema from '@components/schema/EventSchema.astro'
+import { api } from 'src/api'
 ---
 
 <!DOCTYPE html>
@@ -52,7 +55,7 @@ import EventSchema from '@components/schema/EventSchema.astro'
     <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
     <meta name="theme-color" content="#ffffff" />
     <title>{title ? `${title} - SkierCon 2023` : 'SkierCon 2023'}</title>
-    <EventSchema/>
+    <EventSchema guests={guests}/>
 
     {import.meta.env.PUBLIC_GTM && (
       <script type="text/partytown" is:inline>
