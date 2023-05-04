@@ -78,7 +78,7 @@ import { api } from 'src/api'
       </noscript>
     )}
     <Nav />
-    <main class="container">
+    <main class="container mt-24 mb-24">
       <slot />
     </main>
     <Footer />
@@ -86,7 +86,6 @@ import { api } from 'src/api'
   </body>
 </html>
 <style is:global lang="scss">
-  @tailwind base;
   @import '../style/fonts.scss';
   @import 'wysiwyg.css';
 
@@ -103,7 +102,6 @@ import { api } from 'src/api'
     background: var(--bg1) url('/bcg.webp');
     color: rgb(218, 218, 218);
     line-height: 1.6;
-    padding-top: 40px;
   }
 
   .wysiwyg {
