@@ -12,17 +12,14 @@ const widget = Astro.props.widget
   <a
     href={widget.url}
     target={widget.openInNewTab ? '_blank' : '_self'}
-    class={'btn ' + (widget.buttonFullWidth ? 'btn--full' : '')}
+    class={'btn btn-lg ' + (widget.buttonFullWidth ? 'btn--full' : '')}
   >
     {widget.title}
   </a>
 </div>
 
 <style>
-  .btn {
-    @apply py-5 px-10 bg-cyan-700 text-white text-xl hover:bg-cyan-800 transition-all;
-  }
   .btn--full {
-    @apply w-full text-center py-3 text-lg;
+    @apply w-full;
   }
 </style>

@@ -14,6 +14,7 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    require('daisyui'),
     function ({ addComponents }) {
       addComponents({
         '.container': {
@@ -25,12 +26,25 @@ module.exports = {
           },
           '@screen md': {
             maxWidth: '768px',
+            padding: '0 35px',
           },
           '@screen lg': {
-            maxWidth: '1220px',
+            maxWidth: '1120px',
           },
         },
       })
     },
   ],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          ...require('daisyui/src/colors/themes')['[data-theme=halloween]'],
+          primary: '#303030',
+          'primary-content': 'rgb(211, 211, 211)',
+          neutral: '#161717',
+        },
+      },
+    ],
+  },
 }

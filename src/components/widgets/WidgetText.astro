@@ -8,6 +8,6 @@ export interface Props {
 const widget = Astro.props.widget
 ---
 
-<div class="wysiwyg max-w-3xl">
+<div class="wysiwyg">
   <Fragment set:html={fixOrphans(widget.content)} />
 </div>

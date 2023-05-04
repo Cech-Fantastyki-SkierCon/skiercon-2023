@@ -78,7 +78,7 @@ import { api } from 'src/api'
       </noscript>
     )}
     <Nav />
-    <main class="container mt-24 mb-24">
+    <main class="container main pt-24 pb-24">
       <slot />
     </main>
     <Footer />
@@ -89,24 +89,19 @@ import { api } from 'src/api'
   @import '../style/fonts.scss';
   @import 'wysiwyg.css';
 
-  :root {
-    --bg1: #124757;
-    --bg2: #196a78;
-    --acc1: #cfc24f;
-    --acc2: #a1a531;
-    --acc3: #687818;
-  }
-
   .body {
     font-family: 'Poppins', sans-serif;
-    background: var(--bg1) url('/bcg.webp');
-    color: rgb(218, 218, 218);
-    line-height: 1.6;
+    line-height: 1.4;
+    overflow-y: scroll
+  }
+
+  .main {
+    min-height: calc(100vh - 372px);
   }
 
   .wysiwyg {
     a {
-      @apply text-cyan-500;
+      color: #23bdd8;
 
       &[target='_blank']::after {
         content: ' ↗';

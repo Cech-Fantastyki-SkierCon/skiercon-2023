@@ -1,102 +1,55 @@
-<script lang="ts">
-  window.addEventListener('load', () => {
-    const menuButton = document.querySelector('#menuButton')
-    const menu = document.querySelector('#menu')
-
-    menuButton.addEventListener('click', () => {
-      menu.classList.toggle('translate-x-full')
-      menuButton.classList.toggle('active')
-    })
-  })
-</script>
-
-<nav class="h-12 md:h-auto fixed z-10 w-full top-0 left-0 bg-cyan-800">
-  <div class="container flex justify-between items-center h-full">
-    <a href="/" class="flex items-center first-letter:pl-0"
-      ><img
-        src="/logo.png"
-        alt=""
-        class="logo w-8 h-8 mr-2 md:w-10 md:h-10"
-        width="192"
-        height="192"
-        loading="lazy"
-      /> SkierCon 2023</a
-    >
-    <ul
-      id="menu"
-      class="flex flex-col translate-x-full transition-all text-center absolute left-0 top-12 w-screen h-screen bg-cyan-800 md:relative md:flex-row md:bg-transparent md:h-auto md:translate-x-0 md:w-auto md:flex md:top-0"
-    >
-      <li>
-        <a
-          class="block h-full p-3 hover:bg-cyan-900 transition-all"
-          href="/program"
+<div class="fixed w-full bg-base-200 z-10">
+  <div class="navbar bg-base-200 container">
+    <div class="navbar-start">
+      <div class="dropdown">
+        <label tabindex="0" class="btn btn-ghost lg:hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h8m-8 6h16"></path></svg
+          >
+        </label>
+        <ul
+          tabindex="0"
+          class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
         >
-          Program</a
-        >
-      </li>
-      <li>
-        <a
-          class="block h-full p-3 hover:bg-cyan-900 transition-all"
-          href="/goscie"
-        >
-          Goście</a
-        >
-      </li>
-      <li>
-        <a
-          class="block h-full p-3 hover:bg-cyan-900 transition-all"
-          href="/akredytacja"
-        >
-          Akredytacja
-        </a>
-      </li>
-      <li>
-        <a
-          class="block h-full p-3 hover:bg-cyan-900 transition-all"
-          href="/kontakt"
-        >
-          Kontakt</a
-        >
-      </li>
-      <li>
-        <a
-          class="block p-3 h-12 hover:bg-cyan-900 transition-all"
-          href="https://cech.skiercon.pl/"
-        >
-          Cech
-        </a>
-      </li>
-    </ul>
+          <li><a href="/program">Program</a></li>
+          <li><a href="/goscie">Goście</a></li>
+          <li><a href="/akredytacja">Akredytacja</a></li>
+          <li><a href="/kontakt">Kontakt</a></li>
+          <li><a href="https://cech.skiercon.pl/" target="_blank">Cech</a></li>
+        </ul>
+      </div>
+      <a class="btn btn-ghost normal-case text-xl flex items-center" href="/">
+        <img
+          src="/logo.png"
+          alt=""
+          class="logo w-8 h-8 mr-2 md:w-10 md:h-10"
+          width="192"
+          height="192"
+          loading="lazy"
+        />
+        <span>SkierCon</span>
+      </a>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal px-1">
+        <li><a href="/program">Program</a></li>
+        <li><a href="/goscie">Goście</a></li>
+        <li><a href="/akredytacja">Akredytacja</a></li>
+        <li><a href="/kontakt">Kontakt</a></li>
+        <li><a href="https://cech.skiercon.pl/" target="_blank">Cech</a></li>
+      </ul>
+    </div>
+    <!-- <div class="navbar-end hidden md:inline-flex">
+      <a class="btn btn-primary" href="akredytacja">Kup bilet</a>
+    </div> -->
   </div>
-  <button
-    class="menu-button absolute top-0 right-0 z-1 p-4 md:hidden"
-    id="menuButton"
-  >
-    <span class="block relative transition-all w-7 h-0.5 bg-white"></span>
-    <span class="block relative transition-all w-7 h-0.5 bg-white mt-1.5"
-    ></span>
-    <span class="block relative transition-all w-7 h-0.5 bg-white mt-1.5"
-    ></span>
-  </button>
-</nav>
-
-<style lang="scss">
-  .menu-button.active {
-    span {
-      &:nth-child(1) {
-        transform: rotate(45deg) scaleX(1);
-        top: 8px;
-      }
-      &:nth-child(2) {
-        opacity: 0;
-      }
-      &:nth-child(3) {
-        transform: rotate(-45deg) scaleX(1);
-        top: -8px;
-      }
-    }
-  }
-  .logo {
-    filter: drop-shadow(0 0 0.3rem #000000);
-  }
-</style>
+</div>
