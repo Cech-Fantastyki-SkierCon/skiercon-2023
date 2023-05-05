@@ -2,19 +2,10 @@
   import type { CreateTransactionDto } from 'src/__gen-api'
   import { api } from 'src/api'
   import InfoSvelte from './Info.svelte'
+  import SleepSvelte from './Sleep.svelte'
+  import GadgetsSvelte from './Gadgets.svelte'
+  import SummarySvelte from './Summary.svelte'
   import { preakreForm, preakreState } from './preakreStore'
-
-  let wantTshirt = false
-  const tshirtSizes = [
-    'XS',
-    'S',
-    'M',
-    'L',
-    'XL',
-    '2XL',
-    '3XL',
-    '4XL',
-  ] satisfies CreateTransactionDto['tshirt'][]
 
   function nextStep(akreType: 'premium' | 'normal') {
     $preakreState.step = 1
@@ -95,11 +86,13 @@
 
 {#if $preakreState.step > 0}
   <div class="flex justify-center">
-    <ul class="steps steps-vertical lg:steps-horizontal mb-20">
+    <ul class="steps steps-vertical lg:steps-horizontal mb-12">
       <li class="step step-info">Info</li>
-      <li class="step">Sleep</li>
-      <li class="step">Gadżety</li>
-      <li class="step">Podsumowanie</li>
+      <li class="step" class:step-info={$preakreState.step >= 2}>Sleep</li>
+      <li class="step" class:step-info={$preakreState.step >= 3}>Gadżety</li>
+      <li class="step" class:step-info={$preakreState.step >= 4}>
+        Podsumowanie
+      </li>
     </ul>
   </div>
 {/if}
@@ -108,9 +101,18 @@
   {#if $preakreState.step === 1}
     <InfoSvelte />
   {/if}
+  {#if $preakreState.step === 2}
+    <SleepSvelte />
+  {/if}
+  {#if $preakreState.step === 3}
+    <GadgetsSvelte />
+  {/if}
+  {#if $preakreState.step === 4}
+    <SummarySvelte />
+  {/if}
 
   {#if $preakreState.step > 0}
-    <div class="flex justify-between mt-10">
+    <div class="flex justify-between mt-20">
       <button type="button" class="btn" on:click={() => $preakreState.step--}>
         Wstecz
       </button>
@@ -124,110 +126,3 @@
     </div>
   {/if}
 </div>
-
-<!-- <div class="mt-24" /> -->
-<!-- 
-Form:
-<pre>{JSON.stringify($preakreForm, null, 2)}</pre>
-<br />
-State:
-<pre>{JSON.stringify($preakreState, null, 2)}</pre> -->
-
-<!--
-<div class="mb-96" />
-
-<div class="form-control max-w-xs">
-  <label class="label cursor-pointer">
-    <span class="label-text">SkierQubas</span>
-    <input
-      type="checkbox"
-      class="checkbox"
-      bind:checked={formValues.mug}
-      disabled={loading}
-    />
-  </label>
-</div>
-
-<div class="form-control max-w-xs">
-  <label class="label cursor-pointer">
-    <span class="label-text">Koszulka konwnentowa</span>
-    <input type="checkbox" class="checkbox" bind:checked={wantTshirt} />
-  </label>
-</div>
-
-{#if wantTshirt}
-  <div class="form-control w-full max-w-xs">
-    <label class="label" for="tsize">
-      <span class="label-text">Rozmiar koszulki</span>
-    </label>
-    <select
-      class="select select-bordered w-full max-w-xs"
-      bind:value={formValues.tshirt}
-      disabled={loading}
-      id="tsize"
-    >
-      {#each tshirtSizes as size}
-        <option value={size}>{size}</option>
-      {/each}
-    </select>
-  </div>
-{/if}
-
-<label class="label label--checkbox">
-  <input type="checkbox" class="checkbox" bind:checked={formValues.sleep} />
-  <span>Miejsce na sleep-roomie (5 zł)</span>
-</label>
-<label class="label label--checkbox">
-  <input type="checkbox" class="checkbox" bind:checked={formValues.paper} />
-  <span>Papierowy egzemplarz informatora konwentowego (0 zł)</span>
-</label>
-
-<hr class="my-12" />
-<label class="label label--checkbox">
-  <input type="checkbox" required class="checkbox" disabled={loading} />
-  Oświadczam, że zapoznałem się z
-  <a
-    href="https://www.przelewy24.pl/regulamin"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="link">regulaminem</a
-  >
-  i&nbsp;<a
-    href="https://www.przelewy24.pl/obowiazek-informacyjny-rodo-platnicy"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="link">obowiązkiem informacyjnym</a
-  >
-  serwisu Przelewy24.&nbsp;<span class="required">*</span>
-</label>
-<label class="label label--checkbox">
-  <input type="checkbox" required class="checkbox" disabled={loading} />
-  Zapoznałem/am się z&nbsp;
-  <a
-    href="https://cech.skiercon.pl/nasze-akcje/kongres-2023#h.fbm1a0thmvgo"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="link">Regulaminem SkierConu</a
-  >
-  i&nbsp;akceptuję go. Przebywanie na terenie SkierConu uważane jest za jednoznaczne
-  z&nbsp;faktem zapoznania się z&nbsp;Regulaminem i&nbsp;akceptacją jego treści.
-  Nieznajomość Regulaminu nie zwalnia z&nbsp;obowiązku jego przestrzegania.&nbsp;<span
-    class="required">*</span
-  >
-</label>
-<label class="label label--checkbox">
-  <input type="checkbox" required class="checkbox" disabled={loading} />
-  Wyrażam zgodę na przetwarzanie moich danych zgodnie z&nbsp;<a
-    href="https://cech.skiercon.pl/cech/rodo"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="link">Polityką Prywatności</a
-  >
-  oraz akceptuję
-  <a
-    href="https://cech.skiercon.pl/cech/regulamin-sprzedaży"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="link">Regulamin sprzedaży towarów i&nbsp;usług</a
-  >. <span class="required">*</span>
-</label> -->
