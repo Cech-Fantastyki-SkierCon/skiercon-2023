@@ -2,6 +2,8 @@
   import { preakreForm, preakreState } from './preakreStore'
 </script>
 
+<div />
+
 <div class="divider" />
 
 <div class="form-control mt-4">
@@ -38,7 +40,7 @@
     />
     <div>
       Zapoznałem się z&nbsp;<a
-        href="https://cech.skiercon.pl/nasze-akcje/kongres-2023#h.fbm1a0thmvgo"
+        href="/regulamin"
         target="_blank"
         rel="noopener noreferrer"
         class="link link-info link-blank">Regulaminem SkierConu</a

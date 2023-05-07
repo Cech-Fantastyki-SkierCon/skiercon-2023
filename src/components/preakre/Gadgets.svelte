@@ -19,6 +19,16 @@
   ] satisfies CreateTransactionDto['tshirt'][]
 </script>
 
+{#if $preakreForm.preakreType === 'premium'}
+  <div class="mt-5 mb-3">
+    <p class="mb-3">
+      Jako <b>Kruczy Dobrodziej</b> otrzymasz <b>specjalny identyfikator</b>,
+      oraz kilka drobnych upominków - w&nbsp;tym pamiątkowego <b>SkierCoina</b>.
+    </p>
+    <p>Dodatkowo możesz zamówić nasze SkierConowe gadżety:</p>
+  </div>
+{/if}
+
 <div class="form-control mt-4">
   <label class="label cursor-pointer items-start justify-start">
     <input

@@ -4,9 +4,22 @@
   let repeatEmail = ''
 </script>
 
+{#if $preakreForm.preakreType === 'premium'}
+  <p class="mb-4">
+    Jako <b>Kruczy Dobrodziej</b> wpierasz finansowo organizację SkierConu - otrzymasz
+    specjalny identyfikator, kilka drobnych upominków (w&nbsp;tym pamiątkowego SkierCoina)
+    i&nbsp;naszą wdzięczność.
+  </p>
+  <p>
+    Kruczego Dobrodzieja nie obejmują zniżki na akredytację (jako Twórcy
+    Programu lub uczestnika konkursu).
+  </p>
+  <div class="divider" />
+{/if}
+
 <div class="form-control w-full mb-4">
   <label class="label" for="person">
-    <span>Imię "pseudonim" nazwisko</span>
+    <span class="text-xl">Imię "pseudonim" nazwisko</span>
   </label>
   <input
     id="person"
@@ -22,7 +35,7 @@
 
 <div class="form-control w-full mb-4">
   <label class="label" for="email">
-    <span>E-mail <span class="required">*</span></span>
+    <span class="text-xl">E-mail<span class="required">*</span></span>
   </label>
   <input
     id="email"
@@ -39,8 +52,8 @@
 
 <div class="form-control w-full mb-4">
   <label class="label" for="email">
-    <span class="label-text">
-      Powtórz e-mail <span class="required">*</span>
+    <span class="text-xl">
+      Powtórz e-mail<span class="required">*</span>
     </span>
   </label>
   <input
@@ -54,26 +67,27 @@
     required
     disabled={$preakreState.loading}
   />
-  <div class="label">
-    <div>
-      <p>
-        Na podany adres e-mail zostanie wysłany <b>kod QR</b>, który należy
-        okazać przy akredytacji.
-      </p>
-      <p class="mt-4">
-        Jeśli planujesz być Twórcą Programu lub uczestnikiem któregoś z
-        konkursów (JaSkier/OSkier), zwróć uwagę, żeby podać ten sam adres e-mail
-        co w zgłoszeniu punktu programu lub zgłoszeniu konkursowym. W oparciu o
-        e-mail będziemy mogli zweryfikować Twoją zniżkę.
-      </p>
-    </div>
-  </div>
+</div>
+
+<div class="mt-7">
+  <p>
+    Na podany adres e-mail zostanie wysłany <b>kod QR</b>, który należy okazać
+    przy akredytacji.
+  </p>
+  {#if $preakreForm.preakreType === 'normal'}
+    <p class="mt-4">
+      Jeśli planujesz być Twórcą Programu lub uczestnikiem któregoś
+      z&nbsp;konkursów (JaSkier/OSkier), zwróć uwagę, żeby podać ten sam adres
+      e-mail co w zgłoszeniu punktu programu lub zgłoszeniu konkursowym.
+      W&nbsp;oparciu o e-mail będziemy mogli zweryfikować Twoją zniżkę.
+    </p>
+  {/if}
 </div>
 
 <div class="divider" />
 
 <div class="form-control mb-3">
-  <div class="mb-2">
+  <div class="mb-2 text-xl">
     Twój wiek (na dzień 28 lipca 2023 r.)<span class="required">*</span>
   </div>
   <div class="w-24">
@@ -92,22 +106,24 @@
       <input
         type="radio"
         name="radio-10"
-        class="radio mr-4 checked:bg-yellon-800"
+        class="radio mr-4 checked:bg-yellow-400"
         value={13}
         bind:group={age}
       />
       <span class="label-text">13-18</span>
     </label>
-    <label class="label cursor-pointer justify-start">
-      <input
-        type="radio"
-        name="radio-10"
-        class="radio mr-4 checked:bg-yellon-800"
-        value={7}
-        bind:group={age}
-      />
-      <span class="label-text">7-13</span>
-    </label>
+    {#if $preakreForm.preakreType === 'normal'}
+      <label class="label cursor-pointer justify-start">
+        <input
+          type="radio"
+          name="radio-10"
+          class="radio mr-4 checked:bg-yellow-400"
+          value={7}
+          bind:group={age}
+        />
+        <span class="label-text">7-13</span>
+      </label>
+    {/if}
   </div>
 </div>
 {#if age === 7}
@@ -135,12 +151,13 @@
   <label class="label cursor-pointer items-start justify-start">
     <input
       type="checkbox"
-      class="checkbox mr-4"
+      class="checkbox mr-4 mt-1"
       bind:checked={$preakreForm.transportHelp}
       disabled={$preakreState.loading}
     />
     <div>
-      Jestem osobą z&nbsp;<b>niepełnosprawnością wzroku</b>
+      <p class="mb-3 text-xl">Jestem osobą z&nbsp;niepełnosprawnością wzroku</p>
+
       {#if $preakreForm.transportHelp}
         <p class="mt-4">
           Nasi wolontariusze mogą pomóc ci między innymi w&nbsp;dotarciu

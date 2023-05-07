@@ -7,9 +7,16 @@
   import SummarySvelte from './Summary.svelte'
   import { preakreForm, preakreState } from './preakreStore'
 
+  $: {
+    $preakreState.step
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0 })
+    }
+  }
+
   function nextStep(akreType: 'premium' | 'normal') {
     $preakreState.step = 1
-    $preakreState.preakreType = akreType
+    $preakreForm.preakreType = akreType
   }
 </script>
 
@@ -17,7 +24,7 @@
   {#if $preakreState.step === 0}
     Preakredytacja
   {:else}
-    {$preakreState.preakreType === 'normal'
+    {$preakreForm.preakreType === 'normal'
       ? 'Akredytacja'
       : 'Kruczy dobrodziej'}
   {/if}
@@ -34,7 +41,7 @@
         <p>Omiń kolejki i akredytuj się on-line!</p>
         <div class="flex justify-between">
           <div class="card-actions justify-end mt-4">
-            <div class="badge badge-outline">on-line</div>
+            <div class="badge badge-outline">przelewy24</div>
             <div class="badge badge-outline">BLIK</div>
           </div>
           <div>
@@ -59,7 +66,7 @@
         <p>Wspieram SkierCon! Chcę zostać mecenasem!</p>
         <div class="flex justify-between">
           <div class="card-actions justify-end mt-4">
-            <div class="badge badge-outline">on-line</div>
+            <div class="badge badge-outline">przelewy24</div>
             <div class="badge badge-outline">BLIK</div>
           </div>
           <div>
@@ -87,7 +94,7 @@
 {#if $preakreState.step > 0}
   <div class="flex justify-center">
     <ul class="steps steps-vertical lg:steps-horizontal mb-12">
-      <li class="step step-info">Info</li>
+      <li class="step step-info">Informacje</li>
       <li class="step" class:step-info={$preakreState.step >= 2}>Sleep</li>
       <li class="step" class:step-info={$preakreState.step >= 3}>Gadżety</li>
       <li class="step" class:step-info={$preakreState.step >= 4}>
@@ -100,14 +107,11 @@
 <div class="w-full max-w-xl mx-auto">
   {#if $preakreState.step === 1}
     <InfoSvelte />
-  {/if}
-  {#if $preakreState.step === 2}
+  {:else if $preakreState.step === 2}
     <SleepSvelte />
-  {/if}
-  {#if $preakreState.step === 3}
+  {:else if $preakreState.step === 3}
     <GadgetsSvelte />
-  {/if}
-  {#if $preakreState.step === 4}
+  {:else if $preakreState.step === 4}
     <SummarySvelte />
   {/if}
 
