@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { step } from './preakreStore'
+  import { preakreStep } from './preakreStore'
   export let lastStep = false
   export let loading = false
 
   function back() {
     if (loading) return
-    $step--
+    $preakreStep--
   }
 </script>
 

@@ -1,9 +1,9 @@
 <script lang="ts">
   import Controls from '../Controls.svelte'
-  import { preakreForm, step } from '../preakreStore'
+  import { preakreForm, preakreStep } from '../preakreStore'
 </script>
 
-<form on:submit|preventDefault={() => $step++}>
+<form on:submit|preventDefault={() => $preakreStep++}>
   <div class="form-control mt-4">
     <label class="label cursor-pointer items-start justify-start">
       <input

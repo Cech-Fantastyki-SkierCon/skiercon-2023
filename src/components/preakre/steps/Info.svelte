@@ -1,9 +1,9 @@
 <script lang="ts">
   import Controls from '../Controls.svelte'
-  import { preakreForm, preakreState, step } from '../preakreStore'
+  import { preakreForm, preakreStep } from '../preakreStore'
 </script>
 
-<form on:submit|preventDefault={() => $step++}>
+<form on:submit|preventDefault={() => $preakreStep++}>
   {#if $preakreForm.preakreType === 'premium'}
     <p class="mb-4">
       Jako <b>Pszczeli Patron</b> wpierasz finansowo organizację SkierConu - otrzymasz
@@ -77,7 +77,7 @@
           class="radio mr-4"
           checked
           value={18}
-          bind:group={$preakreState.age}
+          bind:group={$preakreForm.age}
         />
         <span class="label-text">18+</span>
       </label>
@@ -87,7 +87,7 @@
           name="radio-10"
           class="radio mr-4"
           value={13}
-          bind:group={$preakreState.age}
+          bind:group={$preakreForm.age}
         />
         <span class="label-text">13-18</span>
       </label>
@@ -98,20 +98,20 @@
             name="radio-10"
             class="radio mr-4"
             value={7}
-            bind:group={$preakreState.age}
+            bind:group={$preakreForm.age}
           />
           <span class="label-text">7-13</span>
         </label>
       {/if}
     </div>
   </div>
-  {#if $preakreState.age === 7}
+  {#if $preakreForm.age === 7}
     <p>
       Pamiętaj, jeśli jesteś osobą poniżej 13 roku życia, po terenie konwentu
       możesz poruszać się jedynie z pełnoletnim opiekunem.
     </p>
   {/if}
-  {#if $preakreState.age === 13}
+  {#if $preakreForm.age === 13}
     <p>
       Pamiętaj, jeśli jesteś osobą, która skończyła 13 lat, ale nie jest jeszcze
       pełnoletnia, zabierz ze sobą zgodę opiekuna prawnego - <a

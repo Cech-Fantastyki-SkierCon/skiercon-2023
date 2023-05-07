@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { CreateTransactionDto } from 'src/__gen-api'
-  import { preakreForm, step } from '../preakreStore'
+  import { preakreForm, preakreStep } from '../preakreStore'
   import Controls from '../Controls.svelte'
 
   let wantTshirt = $preakreForm.tshirt !== undefined
@@ -20,7 +20,7 @@
   ] satisfies CreateTransactionDto['tshirt'][]
 </script>
 
-<form on:submit|preventDefault={() => $step++}>
+<form on:submit|preventDefault={() => $preakreStep++}>
   {#if $preakreForm.preakreType === 'premium'}
     <div class="mt-5 mb-3">
       <p class="mb-3">

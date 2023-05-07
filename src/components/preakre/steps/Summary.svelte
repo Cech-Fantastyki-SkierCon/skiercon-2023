@@ -1,7 +1,7 @@
 <script>
   import { api } from 'src/api'
   import Controls from '../Controls.svelte'
-  import { preakreForm, preakreState } from '../preakreStore'
+  import { preakreForm, preakreAmount } from '../preakreStore'
   import { getRecaptchaToken } from '../recaptcha'
 
   let loading = false
@@ -76,7 +76,7 @@
         {/if}
         <tr class="font-bold uppercase">
           <td>Do zapłaty</td>
-          <td class="text-cyan-400 text-2xl">{$preakreState.amount} zł</td>
+          <td class="text-cyan-400 text-2xl">{$preakreAmount} zł</td>
         </tr>
       </tbody>
     </table>

@@ -1,9 +1,10 @@
 import type { CreateTransactionDto } from 'src/__gen-api'
 import { writable } from 'svelte/store'
 
+const preakreFormLS = localStorage.getItem('preakreForm')
 export const preakreForm = writable<CreateTransactionDto>(
-  localStorage.getItem('preakreForm')
-    ? JSON.parse(localStorage.getItem('preakreForm') as string)
+  preakreFormLS
+    ? JSON.parse(preakreFormLS)
     : {
         captchaToken: '',
         email: '',
@@ -14,17 +15,17 @@ export const preakreForm = writable<CreateTransactionDto>(
         tshirt: undefined,
         person: '',
         preakreType: 'normal',
-      }
-)
-
-export const preakreState = writable(
-  localStorage.getItem('preakreState')
-    ? JSON.parse(localStorage.getItem('preakreState') as string)
-    : {
-        amount: 0,
         age: 18,
       }
 )
+
+const preakreAmountLS = localStorage.getItem('preakreAmount')
+export const preakreAmount = writable(
+  preakreAmountLS ? parseInt(preakreAmountLS) : 0
+)
+
+const preakreStepLs = localStorage.getItem('preakreStep')
+export const preakreStep = writable(preakreStepLs ? parseInt(preakreStepLs) : 0)
 
 preakreForm.subscribe(form => {
   let amount = 50
@@ -33,22 +34,15 @@ preakreForm.subscribe(form => {
   if (form.sleep) amount += 5
   if (form.tshirt) amount += 40
 
-  preakreState.update(state => ({ ...state, amount }))
+  preakreAmount.update(() => amount)
   localStorage.setItem('preakreForm', JSON.stringify(form))
 })
 
-preakreState.subscribe(state => {
+preakreAmount.subscribe(state => {
   localStorage.setItem('preakreState', JSON.stringify(state))
 })
 
-export const step = writable(
-  parseInt(localStorage.getItem('preakreStep') as string) || 0
-)
-step.subscribe(step => {
-  if (typeof window !== 'undefined') {
-    window.scrollTo(0, 0)
-  }
+preakreStep.subscribe(step => {
+  if (typeof window !== 'undefined') window.scrollTo(0, 0)
   localStorage.setItem('preakreStep', JSON.stringify(step))
 })
-
-export const loading = writable(false)
