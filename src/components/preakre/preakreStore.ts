@@ -25,6 +25,7 @@ export const preakreState = writable(
         step: 0,
         amount: 0,
         age: 18,
+        repeatEmail: '',
       }
 )
 

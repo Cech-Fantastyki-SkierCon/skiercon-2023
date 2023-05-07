@@ -1,10 +1,8 @@
 <script lang="ts">
-  import type { CreateTransactionDto } from 'src/__gen-api'
-  import { api } from 'src/api'
-  import InfoSvelte from './Info.svelte'
-  import SleepSvelte from './Sleep.svelte'
-  import GadgetsSvelte from './Gadgets.svelte'
-  import SummarySvelte from './Summary.svelte'
+  import InfoSvelte from './steps/Info.svelte'
+  import SleepSvelte from './steps/Sleep.svelte'
+  import GadgetsSvelte from './steps/Gadgets.svelte'
+  import SummarySvelte from './steps/Summary.svelte'
   import { preakreForm, preakreState } from './preakreStore'
 
   $: {
@@ -14,9 +12,9 @@
     }
   }
 
-  function nextStep(akreType: 'premium' | 'normal') {
+  function nextStep(preakreType: 'premium' | 'normal') {
     $preakreState.step = 1
-    $preakreForm.preakreType = akreType
+    $preakreForm.preakreType = preakreType
   }
 </script>
 
@@ -24,9 +22,7 @@
   {#if $preakreState.step === 0}
     Preakredytacja
   {:else}
-    {$preakreForm.preakreType === 'normal'
-      ? 'Akredytacja'
-      : 'Kruczy dobrodziej'}
+    {$preakreForm.preakreType === 'normal' ? 'Akredytacja' : 'Pszczeli Patron'}
   {/if}
 </h1>
 
@@ -60,7 +56,7 @@
     <div class="card w-full md:w-96 bg-base-100 shadow-xl">
       <div class="card-body">
         <h2 class="card-title">
-          Kruczy dobrodziej
+          Pszczeli Patron
           <div class="badge badge-error">100 zł</div>
         </h2>
         <p>Wspieram SkierCon! Chcę zostać mecenasem!</p>
@@ -113,20 +109,5 @@
     <GadgetsSvelte />
   {:else if $preakreState.step === 4}
     <SummarySvelte />
-  {/if}
-
-  {#if $preakreState.step > 0}
-    <div class="flex justify-between mt-20">
-      <button type="button" class="btn" on:click={() => $preakreState.step--}>
-        Wstecz
-      </button>
-      <button
-        type="button"
-        class="btn btn-warning"
-        on:click={() => $preakreState.step++}
-      >
-        Dalej
-      </button>
-    </div>
   {/if}
 </div>
