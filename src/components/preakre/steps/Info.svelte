@@ -75,6 +75,7 @@
           type="radio"
           name="radio-10"
           class="radio mr-4"
+          required
           checked
           value={18}
           bind:group={$preakreForm.age}
@@ -86,6 +87,7 @@
           type="radio"
           name="radio-10"
           class="radio mr-4"
+          required
           value={13}
           bind:group={$preakreForm.age}
         />
@@ -97,6 +99,7 @@
             type="radio"
             name="radio-10"
             class="radio mr-4"
+            required
             value={7}
             bind:group={$preakreForm.age}
           />

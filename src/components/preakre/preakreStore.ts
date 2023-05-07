@@ -18,15 +18,6 @@ export const preakreForm = writable<CreateTransactionDto>(
         age: 18,
       }
 )
-
-const preakreAmountLS = localStorage.getItem('preakreAmount')
-export const preakreAmount = writable(
-  preakreAmountLS ? parseInt(preakreAmountLS) : 0
-)
-
-const preakreStepLs = localStorage.getItem('preakreStep')
-export const preakreStep = writable(preakreStepLs ? parseInt(preakreStepLs) : 0)
-
 preakreForm.subscribe(form => {
   let amount = 50
   if (form.preakreType === 'premium') amount += 50
@@ -38,10 +29,16 @@ preakreForm.subscribe(form => {
   localStorage.setItem('preakreForm', JSON.stringify(form))
 })
 
+const preakreAmountLS = localStorage.getItem('preakreAmount')
+export const preakreAmount = writable(
+  preakreAmountLS ? parseInt(preakreAmountLS) : 0
+)
 preakreAmount.subscribe(state => {
-  localStorage.setItem('preakreState', JSON.stringify(state))
+  localStorage.setItem('preakreAmount', JSON.stringify(state))
 })
 
+const preakreStepLs = localStorage.getItem('preakreStep')
+export const preakreStep = writable(preakreStepLs ? parseInt(preakreStepLs) : 0)
 preakreStep.subscribe(step => {
   if (typeof window !== 'undefined') window.scrollTo(0, 0)
   localStorage.setItem('preakreStep', JSON.stringify(step))
