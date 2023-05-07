@@ -1,9 +1,27 @@
 <script>
+  import { api } from 'src/api'
   import Controls from '../Controls.svelte'
   import { preakreForm, preakreState } from '../preakreStore'
+  import { getRecaptchaToken } from '../recaptcha'
+
+  let loading = false
+
+  async function onSubmit() {
+    if (loading) return
+    loading = true
+    try {
+      $preakreForm.captchaToken = await getRecaptchaToken()
+      const res = await api.transactions.create($preakreForm)
+      window.location.href = res.data.redirectUrl
+    } catch (err) {
+      console.error(err)
+      loading = false
+      alert('Wystąpił nieznany błąd. Prosimy spróbować później.')
+    }
+  }
 </script>
 
-<form on:submit|preventDefault={() => {}}>
+<form on:submit|preventDefault={onSubmit}>
   <p class="text-center mt-6">
     Wiadomość z <b>kodem QR</b> zostanie wysłana na adres
   </p>
@@ -71,7 +89,7 @@
         type="checkbox"
         class="checkbox mr-4 mt-1"
         required
-        disabled={$preakreState.loading}
+        disabled={loading}
       />
       <div>
         Oświadczam, że zapoznałem się z&nbsp;<a
@@ -97,7 +115,7 @@
         type="checkbox"
         class="checkbox mr-4 mt-1"
         required
-        disabled={$preakreState.loading}
+        disabled={loading}
       />
       <div>
         Zapoznałem się z&nbsp;<a
@@ -121,7 +139,7 @@
         type="checkbox"
         class="checkbox mr-4 mt-1"
         required
-        disabled={$preakreState.loading}
+        disabled={loading}
       />
       <div>
         Wyrażam zgodę na przetwarzanie moich danych zgodnie z&nbsp;<a
@@ -141,5 +159,5 @@
       </div>
     </label>
   </div>
-  <Controls lastStep />
+  <Controls lastStep {loading} />
 </form>
