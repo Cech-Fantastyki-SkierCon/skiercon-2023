@@ -21,11 +21,8 @@ export const preakreState = writable(
   localStorage.getItem('preakreState')
     ? JSON.parse(localStorage.getItem('preakreState') as string)
     : {
-        loading: false,
-        step: 0,
         amount: 0,
         age: 18,
-        repeatEmail: '',
       }
 )
 
@@ -43,3 +40,15 @@ preakreForm.subscribe(form => {
 preakreState.subscribe(state => {
   localStorage.setItem('preakreState', JSON.stringify(state))
 })
+
+export const step = writable(
+  parseInt(localStorage.getItem('preakreStep') as string) || 0
+)
+step.subscribe(step => {
+  if (typeof window !== 'undefined') {
+    window.scrollTo(0, 0)
+  }
+  localStorage.setItem('preakreStep', JSON.stringify(step))
+})
+
+export const loading = writable(false)

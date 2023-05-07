@@ -1,9 +1,9 @@
 <script lang="ts">
   import type { CreateTransactionDto } from 'src/__gen-api'
-  import { preakreForm, preakreState } from '../preakreStore'
+  import { preakreForm, step } from '../preakreStore'
   import Controls from '../Controls.svelte'
 
-  let wantTshirt = false
+  let wantTshirt = $preakreForm.tshirt !== undefined
   $: if (!wantTshirt) {
     $preakreForm.tshirt = undefined
   }
@@ -20,11 +20,11 @@
   ] satisfies CreateTransactionDto['tshirt'][]
 </script>
 
-<form on:submit|preventDefault={() => $preakreState.step++}>
+<form on:submit|preventDefault={() => $step++}>
   {#if $preakreForm.preakreType === 'premium'}
     <div class="mt-5 mb-3">
       <p class="mb-3">
-        Jako <b>Kruczy Dobrodziej</b> otrzymasz <b>specjalny identyfikator</b>,
+        Jako <b>Pszczeli Patron</b> otrzymasz <b>specjalny identyfikator</b>,
         oraz kilka drobnych upominków - w&nbsp;tym pamiątkowego
         <b>SkierCoina</b>.
       </p>
@@ -38,7 +38,6 @@
         type="checkbox"
         class="checkbox mr-4 mt-1"
         bind:checked={$preakreForm.mug}
-        disabled={$preakreState.loading}
       />
       <div>
         <p class="mb-3 text-xl">
@@ -76,7 +75,6 @@
         type="checkbox"
         class="checkbox mr-4 mt-1"
         bind:checked={wantTshirt}
-        disabled={$preakreState.loading}
       />
       <div>
         <p class="mb-3 text-xl">
@@ -119,7 +117,6 @@
         type="checkbox"
         class="checkbox mr-4 mt-1"
         bind:checked={$preakreForm.paper}
-        disabled={$preakreState.loading}
       />
       <div>
         <p class="mb-3 text-xl">

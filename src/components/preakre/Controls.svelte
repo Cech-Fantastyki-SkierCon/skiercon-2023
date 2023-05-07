@@ -1,10 +1,10 @@
 <script lang="ts">
   export let lastStep = false
-  import { preakreState } from './preakreStore'
+  import { step } from './preakreStore'
 </script>
 
 <div class="flex justify-between mt-20">
-  <button type="button" class="btn" on:click={() => $preakreState.step--}>
+  <button type="button" class="btn" on:click={() => $step--}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"

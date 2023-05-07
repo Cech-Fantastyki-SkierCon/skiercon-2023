@@ -1,16 +1,15 @@
 <script lang="ts">
   import Controls from '../Controls.svelte'
-  import { preakreForm, preakreState } from '../preakreStore'
+  import { preakreForm, step } from '../preakreStore'
 </script>
 
-<form on:submit|preventDefault={() => $preakreState.step++}>
+<form on:submit|preventDefault={() => $step++}>
   <div class="form-control mt-4">
     <label class="label cursor-pointer items-start justify-start">
       <input
         type="checkbox"
         class="checkbox mr-4 mt-1"
-        bind:checked={$preakreForm.transportHelp}
-        disabled={$preakreState.loading}
+        bind:checked={$preakreForm.sleep}
       />
       <div>
         <p class="mb-2 text-xl">

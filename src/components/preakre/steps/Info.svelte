@@ -1,9 +1,9 @@
 <script lang="ts">
   import Controls from '../Controls.svelte'
-  import { preakreForm, preakreState } from '../preakreStore'
+  import { preakreForm, preakreState, step } from '../preakreStore'
 </script>
 
-<form on:submit|preventDefault={() => $preakreState.step++}>
+<form on:submit|preventDefault={() => $step++}>
   {#if $preakreForm.preakreType === 'premium'}
     <p class="mb-4">
       Jako <b>Pszczeli Patron</b> wpierasz finansowo organizację SkierConu - otrzymasz
@@ -27,7 +27,6 @@
       placeholder="Król Julian"
       class="input input-bordered w-full"
       bind:value={$preakreForm.person}
-      disabled={$preakreState.loading}
       maxlength="60"
       autocomplete="given-name"
     />
@@ -46,26 +45,6 @@
       autocomplete="email"
       inputmode="email"
       required
-      disabled={$preakreState.loading}
-    />
-  </div>
-
-  <div class="form-control w-full mb-4">
-    <label class="label" for="email">
-      <span class="text-xl">
-        Powtórz e-mail<span class="required">*</span>
-      </span>
-    </label>
-    <input
-      id="email"
-      type="email"
-      class="input input-bordered w-full"
-      bind:value={$preakreState.repeatEmail}
-      placeholder="shrek@bagno.com"
-      autocomplete="email"
-      inputmode="email"
-      required
-      disabled={$preakreState.loading}
     />
   </div>
 
@@ -88,14 +67,14 @@
 
   <div class="form-control mb-3">
     <div class="mb-2 text-xl">
-      Twój wiek (na dzień 28 lipca 2023 r.)<span class="required">*</span>
+      Twój wiek na dzień 28 lipca 2023 r. <span class="required">*</span>
     </div>
     <div class="w-24">
       <label class="label cursor-pointer justify-start">
         <input
           type="radio"
           name="radio-10"
-          class="radio mr-4 checked:bg-green-500"
+          class="radio mr-4"
           checked
           value={18}
           bind:group={$preakreState.age}
@@ -106,7 +85,7 @@
         <input
           type="radio"
           name="radio-10"
-          class="radio mr-4 checked:bg-yellow-400"
+          class="radio mr-4"
           value={13}
           bind:group={$preakreState.age}
         />
@@ -117,7 +96,7 @@
           <input
             type="radio"
             name="radio-10"
-            class="radio mr-4 checked:bg-yellow-400"
+            class="radio mr-4"
             value={7}
             bind:group={$preakreState.age}
           />
@@ -153,7 +132,6 @@
         type="checkbox"
         class="checkbox mr-4 mt-1"
         bind:checked={$preakreForm.transportHelp}
-        disabled={$preakreState.loading}
       />
       <div>
         <p class="mb-3 text-xl">

@@ -3,30 +3,24 @@
   import SleepSvelte from './steps/Sleep.svelte'
   import GadgetsSvelte from './steps/Gadgets.svelte'
   import SummarySvelte from './steps/Summary.svelte'
-  import { preakreForm, preakreState } from './preakreStore'
-
-  $: {
-    $preakreState.step
-    if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0 })
-    }
-  }
+  import { preakreForm, step } from './preakreStore'
+  import Steps from './Steps.svelte'
 
   function nextStep(preakreType: 'premium' | 'normal') {
-    $preakreState.step = 1
+    $step = 1
     $preakreForm.preakreType = preakreType
   }
 </script>
 
 <h1 class="mb-6 text-4xl font-bold text-center">
-  {#if $preakreState.step === 0}
+  {#if $step === 0}
     Preakredytacja
   {:else}
     {$preakreForm.preakreType === 'normal' ? 'Akredytacja' : 'Pszczeli Patron'}
   {/if}
 </h1>
 
-{#if $preakreState.step === 0}
+{#if $step === 0}
   <div class="flex flex-col md:flex-row justify-center gap-10 pt-10">
     <div class="card w-full md:w-96 bg-base-100 shadow-xl">
       <div class="card-body">
@@ -87,27 +81,16 @@
   </div>
 {/if}
 
-{#if $preakreState.step > 0}
-  <div class="flex justify-center">
-    <ul class="steps steps-vertical lg:steps-horizontal mb-12">
-      <li class="step step-info">Informacje</li>
-      <li class="step" class:step-info={$preakreState.step >= 2}>Sleep</li>
-      <li class="step" class:step-info={$preakreState.step >= 3}>Gadżety</li>
-      <li class="step" class:step-info={$preakreState.step >= 4}>
-        Podsumowanie
-      </li>
-    </ul>
-  </div>
-{/if}
+<Steps />
 
 <div class="w-full max-w-xl mx-auto">
-  {#if $preakreState.step === 1}
+  {#if $step === 1}
     <InfoSvelte />
-  {:else if $preakreState.step === 2}
+  {:else if $step === 2}
     <SleepSvelte />
-  {:else if $preakreState.step === 3}
+  {:else if $step === 3}
     <GadgetsSvelte />
-  {:else if $preakreState.step === 4}
+  {:else if $step === 4}
     <SummarySvelte />
   {/if}
 </div>
