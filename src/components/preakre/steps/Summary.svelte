@@ -12,6 +12,9 @@
     try {
       $preakreForm.captchaToken = await getRecaptchaToken()
       const res = await api.transactions.create($preakreForm)
+      window.localStorage.removeItem('preakreForm')
+      window.localStorage.removeItem('preakreState')
+      window.localStorage.removeItem('preakreStep')
       window.location.href = res.data.redirectUrl
     } catch (err) {
       console.error(err)
