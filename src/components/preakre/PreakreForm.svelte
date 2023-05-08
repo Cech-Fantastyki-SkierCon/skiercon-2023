@@ -31,7 +31,7 @@
         <p>Omiń kolejki i akredytuj się on-line!</p>
         <div class="flex justify-between">
           <div class="card-actions justify-end mt-4">
-            <div class="badge badge-outline">przelewy24</div>
+            <div class="badge badge-outline">Przelewy24</div>
             <div class="badge badge-outline">BLIK</div>
           </div>
           <div>
@@ -56,7 +56,7 @@
         <p>Wspieram SkierCon! Chcę zostać mecenasem!</p>
         <div class="flex justify-between">
           <div class="card-actions justify-end mt-4">
-            <div class="badge badge-outline">przelewy24</div>
+            <div class="badge badge-outline">Przelewy24</div>
             <div class="badge badge-outline">BLIK</div>
           </div>
           <div>

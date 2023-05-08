@@ -61,7 +61,7 @@
           />
         </div>
         <p class="text-sm text-center">
-          (Zdjęcie podglądowe - kolory i kształty kubków mogą się różnić)
+          (Zdjęcie poglądowe - kolory i kształty kubków mogą się różnić)
         </p>
       </div>
     </label>
