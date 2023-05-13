@@ -12,42 +12,29 @@ const guests = data.filter(speaker => speaker.guest)
 >
   <Breadcrumbs breadcrumbs={[{ name: 'Goście' }]} />
   <h1 class="mb-4 mt-4 text-4xl font-bold">Goście SkierConu</h1>
-  <p class="mb4 md:mb-14">W tym roku obecnością zaszczycą nas:</p>
+  <p class="mb-4 md:mb-14">W tym roku obecnością zaszczycą nas:</p>
   <ul>
     {
       guests.map(guest => {
         return (
-          <li>
-            <a
-              href={`/goscie/${guest.slug}`}
-              class="flex flex-col md:flex-row  md:gap-5 mb-6"
-            >
-              <div class="w-full md:w-2/12 lg:w-1/12">
-                <img
-                  src={guest.image.url}
-                  width={guest.image.meta.width}
-                  height={guest.image.meta.height}
-                  alt={guest.displayName}
-                  class="w-full"
-                  loading="lazy"
-                />
-              </div>
-              <div class="w-full lg:w-7/12">
-                <h2 class="text-xl mt-8 md:mt-1 font-bold">
-                  {guest.displayName}
-                </h2>
-                <div class="wysiwyg mt-1 overflow-hidden text-sm">
-                  <Fragment
-                    set:html={
-                      guest.description
-                        ?.trim()
-                        .split(' ')
-                        .slice(0, 22)
-                        .join(' ') + '...'
-                    }
-                  />
-                  <span class="text-cyan-500"> Czytaj więcej »</span>
-                </div>
+          <li class="flex flex-col md:flex-row  md:gap-5 mb-6">
+            <div class="w-full md:w-2/12 lg:w-1/12">
+              <img
+                src={guest.image.url}
+                width={guest.image.meta.width}
+                height={guest.image.meta.height}
+                alt={guest.displayName}
+                class="w-full"
+                loading="lazy"
+              />
+            </div>
+            <a href={`/goscie/${guest.slug}`} class="w-full lg:w-7/12">
+              <h2 class="text-xl mt-8 md:mt-1 font-bold">
+                {guest.displayName}
+              </h2>
+              <div class="wysiwyg mt-1 overflow-hidden text-sm">
+                <Fragment set:html={guest.shortDescription} />
+                <span class="text-cyan-500"> Czytaj więcej »</span>
               </div>
             </a>
           </li>
