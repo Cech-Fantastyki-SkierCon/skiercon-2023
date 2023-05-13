@@ -4,13 +4,12 @@ import Widgets from '@components/Widgets.astro'
 import { api } from 'src/api'
 import axios from 'axios'
 
-const slug = Astro.params.slug!
 let page = null as unknown as Awaited<
   ReturnType<typeof api.pages.getPageBySlug>
 >['data']
 
 try {
-  const res = await api.pages.getPageBySlug(slug)
+  const res = await api.pages.getPageBySlug(Astro.params.slug!)
   page = res.data
 } catch (err) {
   if (axios.isAxiosError(err)) {

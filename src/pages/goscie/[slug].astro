@@ -1,0 +1,34 @@
+---
+import Layout from '@layouts/Layout.astro'
+import Breadcrumbs from '@components/Breadcrumbs.astro'
+import { api } from 'src/api'
+const { data: guest } = await api.programSpeakers.getProfile(Astro.params.slug!)
+---
+
+<Layout
+  title={guest.displayName! + ' - Goście'}
+  description={guest.description!}
+>
+  <Breadcrumbs
+    breadcrumbs={[
+      { name: 'Goście', path: '/goscie' },
+      { name: guest.displayName! },
+    ]}
+  />
+
+  <img
+    src={guest.image.url}
+    width={guest.image.meta.width}
+    height={guest.image.meta.height}
+    alt={guest.displayName}
+    class="w-full md:w-64 mb-8"
+    loading="lazy"
+  />
+  <h1 class="mb-4 text-xl md:text-4xl font-bold">{guest.displayName}</h1>
+  <div class="max-w-3xl">
+    <Fragment set:html={guest.description?.trim()} />
+  </div>
+
+  <!-- <h2 class="mt-14 mb-3 text-xl font-bold">Wydarzenia i prelekcje</h2>
+  <p>Gdy tylko pojawi się program</p> -->
+</Layout>

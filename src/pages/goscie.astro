@@ -1,7 +1,8 @@
 ---
 import Layout from '@layouts/Layout.astro'
+import Breadcrumbs from '@components/Breadcrumbs.astro'
 import { api } from 'src/api'
-const { data } = await api.programSpeakers.all()
+const { data } = await api.programSpeakers.allProfiles({ guests: true })
 const guests = data.filter(speaker => speaker.guest)
 ---
 
@@ -9,34 +10,49 @@ const guests = data.filter(speaker => speaker.guest)
   title="Goście"
   description="Poznaj niezwykłych, magicznych, szalonych i pełnych pasji. Goście SkierConu polecają się na panele dyskusyjne o tematach ważkich i ważnych, wyjątkowe prelekcje i wciągające warsztaty. Oraz do rozmów przy herbatce (jaśminowej). Sprawdźcie kogo będziecie mieli okazję spotkać na tegorocznym konwencie letniego chilloutu."
 >
-  <h1 class="mb-4 mt-24 text-4xl font-bold">Goście SkierConu</h1>
-  <p class="mb4 md:mb-24">W tym roku obecnością zaszczycą nas:</p>
-  {
-    guests.map(guest => {
-      return (
-        <div class="flex flex-col md:flex-row my-10 md:gap-10 mb-24">
-          <div class="w-full md:w-1/4">
-            <img
-              src={guest.image.url}
-              width={guest.image.meta.width}
-              height={guest.image.meta.height}
-              height="300"
-              alt={guest.name}
-              class="w-full"
-              loading="lazy"
-            />
-          </div>
-          <div class="w-full md:w-3/4">
-            <h2 class="text-2xl mt-8 md:mt-0 font-bold">
-              {guest.name} {guest.nick ? `"${guest.nick}"` : ''}
-              {guest.lastName ? guest.lastName : ''}
-            </h2>
-            <div class="wysiwyg mt-2 overflow-hidden">
-              <Fragment set:html={guest.description?.trim()} />
-            </div>
-          </div>
-        </div>
-      )
-    })
-  }
+  <Breadcrumbs breadcrumbs={[{ name: 'Goście' }]} />
+  <h1 class="mb-4 mt-4 text-4xl font-bold">Goście SkierConu</h1>
+  <p class="mb4 md:mb-14">W tym roku obecnością zaszczycą nas:</p>
+  <ul>
+    {
+      guests.map(guest => {
+        return (
+          <li>
+            <a
+              href={`/goscie/${guest.slug}`}
+              class="flex flex-col md:flex-row  md:gap-5 mb-6"
+            >
+              <div class="w-full md:w-2/12 lg:w-1/12">
+                <img
+                  src={guest.image.url}
+                  width={guest.image.meta.width}
+                  height={guest.image.meta.height}
+                  alt={guest.displayName}
+                  class="w-full"
+                  loading="lazy"
+                />
+              </div>
+              <div class="w-full lg:w-7/12">
+                <h2 class="text-xl mt-8 md:mt-1 font-bold">
+                  {guest.displayName}
+                </h2>
+                <div class="wysiwyg mt-1 overflow-hidden text-sm">
+                  <Fragment
+                    set:html={
+                      guest.description
+                        ?.trim()
+                        .split(' ')
+                        .slice(0, 22)
+                        .join(' ') + '...'
+                    }
+                  />
+                  <span class="text-cyan-500"> Czytaj więcej »</span>
+                </div>
+              </div>
+            </a>
+          </li>
+        )
+      })
+    }
+  </ul>
 </Layout>

@@ -1,0 +1,28 @@
+---
+interface Breadcrumb {
+  name: string
+  path?: string
+  icon?: string
+}
+
+export interface Props {
+  breadcrumbs: Breadcrumb[]
+}
+---
+
+<div class="text-sm breadcrumbs mb-10 display">
+  <ul>
+    <li><a href="/">SkierCon</a></li>
+    {
+      Astro.props.breadcrumbs.map(breadcrumb => {
+        return breadcrumb.path ? (
+          <li>
+            <a href={breadcrumb.path}>{breadcrumb.name}</a>
+          </li>
+        ) : (
+          <li>{breadcrumb.name}</li>
+        )
+      })
+    }
+  </ul>
+</div>
