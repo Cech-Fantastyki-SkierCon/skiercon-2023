@@ -2,7 +2,25 @@
 import Layout from '@layouts/Layout.astro'
 import Breadcrumbs from '@components/Breadcrumbs.astro'
 import { api } from 'src/api'
-const { data: guest } = await api.programSpeakers.getProfile(Astro.params.slug!)
+import type { ProgramSpeakerProfileDto } from 'src/__gen-api'
+import axios from 'axios'
+
+let guest: ProgramSpeakerProfileDto
+
+try {
+  const res = await api.programSpeakers.getProfile(Astro.params.slug!)
+  guest = res.data
+} catch (err) {
+  if (axios.isAxiosError(err)) {
+    return new Response('Nie znaleziono strony', {
+      status: 404,
+    })
+  } else {
+    return new Response('Wystąpił nieznany błąd', {
+      status: 500,
+    })
+  }
+}
 ---
 
 <Layout
