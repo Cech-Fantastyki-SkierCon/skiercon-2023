@@ -12,8 +12,10 @@
         bind:checked={$preakreForm.sleep}
       />
       <div>
-        <p class="mb-2 text-xl">
-          Miejsce na sleep-roomie (<span class="text-cyan-400">+5,00 zł</span>)
+        <p class="mb-2 text-lg md:text-xl">
+          Miejsce na sleep-roomie (<span class="text-cyan-400"
+            >+5,00&nbsp;zł</span
+          >)
         </p>
         <p>
           Za symboliczną opłatą udostępniamy uczestnikom konwentu miejsce na

@@ -40,8 +40,8 @@
         bind:checked={$preakreForm.mug}
       />
       <div>
-        <p class="mb-3 text-xl">
-          SkierQubas - Kubek (<span class="text-cyan-400">+50,00 zł</span>)
+        <p class="mb-3 text-lg md:text-xl">
+          SkierQubas - Kubek (<span class="text-cyan-400">+50,00&nbsp;zł</span>)
         </p>
         <p>
           Legendarny offhand, stworzony w&nbsp;<b
@@ -77,8 +77,9 @@
         bind:checked={wantTshirt}
       />
       <div>
-        <p class="mb-3 text-xl">
-          Koszulka konwentowa (<span class="text-cyan-400">+40,00 zł</span>)
+        <p class="mb-3 text-lg md:text-xl">
+          Koszulka konwentowa (<span class="text-cyan-400">+40,00&nbsp;zł</span
+          >)
         </p>
         <p>
           Wysokiej jakości czarny t-shirt unisex, 100% bawełna, gramatura
@@ -119,9 +120,9 @@
         bind:checked={$preakreForm.paper}
       />
       <div>
-        <p class="mb-3 text-xl">
+        <p class="mb-3 text-lg md:text-xl">
           Papierowy informator konwentowy (<span class="text-cyan-400"
-            >+0,00 zł</span
+            >+0,00&nbsp;zł</span
           >)
         </p>
         <p class="">

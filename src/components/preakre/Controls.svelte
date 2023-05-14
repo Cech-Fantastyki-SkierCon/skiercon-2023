@@ -9,7 +9,10 @@
   }
 </script>
 
-<div class="flex justify-between mt-20">
+<div
+  class="flex md:flex-row justify-between mt-20"
+  class:flex-col-reverse={lastStep}
+>
   <button type="button" class="btn" on:click={back} disabled={loading}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +30,7 @@
       /></svg
     > Wstecz
   </button>
-  <button type="submit" class="btn btn-warning">
+  <button type="submit" class="btn btn-warning" class:mb-5={lastStep}>
     {#if lastStep}
       Przejdź do płatności
     {:else}

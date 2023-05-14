@@ -12,7 +12,7 @@
   }
 </script>
 
-<h1 class="mb-6 text-4xl font-bold text-center">
+<h1 class="mt-32 mb-6 text-4xl font-bold text-center">
   {#if $preakreStep === 0}
     Preakredytacja
   {:else}

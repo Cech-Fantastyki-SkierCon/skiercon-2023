@@ -28,7 +28,7 @@
   <p class="text-center mt-6">
     Wiadomość z <b>kodem QR</b> zostanie wysłana na adres
   </p>
-  <p class="text-cyan-400 text-center my-2 text-2xl mb-6">
+  <p class="text-cyan-400 text-center my-2 text-lg md:text-2xl mb-6">
     {$preakreForm.email}
   </p>
 
