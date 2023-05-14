@@ -12,7 +12,7 @@
   }
 </script>
 
-<h1 class="mt-32 mb-6 text-4xl font-bold text-center">
+<h1 class="mt-28 md:mb-6 text-3xl md:text-4xl font-bold text-center">
   {#if $preakreStep === 0}
     Preakredytacja
   {:else}
@@ -28,10 +28,10 @@
           Akredytacja
           <div class="badge badge-error">50 zł</div>
         </h2>
-        <p>Omiń kolejki i akredytuj się on-line!</p>
+        <p class="mb-4 md:mb-0">Omiń kolejki i akredytuj się on-line!</p>
         <div class="flex justify-between">
           <div class="card-actions justify-end mt-4">
-            <div class="badge badge-outline">Przelewy24</div>
+            <div class="hidden md:block badge badge-outline">Przelewy24</div>
             <div class="badge badge-outline">BLIK</div>
           </div>
           <div>
@@ -53,10 +53,10 @@
           Pszczeli Patron
           <div class="badge badge-error">100 zł</div>
         </h2>
-        <p>Wspieram SkierCon! Chcę zostać mecenasem!</p>
+        <p class="mb-4 md:mb-0">Wspieram SkierCon! Chcę zostać mecenasem!</p>
         <div class="flex justify-between">
           <div class="card-actions justify-end mt-4">
-            <div class="badge badge-outline">Przelewy24</div>
+            <div class="hidden md:block badge badge-outline">Przelewy24</div>
             <div class="badge badge-outline">BLIK</div>
           </div>
           <div>
