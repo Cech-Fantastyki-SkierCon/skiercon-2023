@@ -26,12 +26,12 @@
       <div class="card-body">
         <h2 class="card-title">
           Akredytacja
-          <div class="badge badge-error">50 zł</div>
+          <div class="badge badge-error">50&nbsp;zł</div>
         </h2>
-        <p class="mb-4 md:mb-0">Omiń kolejki i akredytuj się on-line!</p>
+        <p class="mb-4 lg:mb-0">Omiń kolejki i akredytuj się on-line!</p>
         <div class="flex justify-between">
           <div class="card-actions justify-end mt-4">
-            <div class="hidden md:block badge badge-outline">Przelewy24</div>
+            <div class="hidden lg:block badge badge-outline">Przelewy24</div>
             <div class="badge badge-outline">BLIK</div>
           </div>
           <div>
@@ -51,12 +51,12 @@
       <div class="card-body">
         <h2 class="card-title">
           Pszczeli Patron
-          <div class="badge badge-error">100 zł</div>
+          <div class="badge badge-error">100&nbsp;zł</div>
         </h2>
-        <p class="mb-4 md:mb-0">Wspieram SkierCon! Chcę zostać mecenasem!</p>
+        <p class="mb-4 lg:mb-0">Wspieram SkierCon! Chcę zostać mecenasem!</p>
         <div class="flex justify-between">
           <div class="card-actions justify-end mt-4">
-            <div class="hidden md:block badge badge-outline">Przelewy24</div>
+            <div class="hidden lg:block badge badge-outline">Przelewy24</div>
             <div class="badge badge-outline">BLIK</div>
           </div>
           <div>

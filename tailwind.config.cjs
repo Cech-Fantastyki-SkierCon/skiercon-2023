@@ -21,9 +21,6 @@ module.exports = {
           margin: '0 auto',
           maxWidth: '100%',
           padding: '0 15px',
-          '@screen sm': {
-            maxWidth: '640px',
-          },
           '@screen md': {
             maxWidth: '768px',
             padding: '0 35px',
