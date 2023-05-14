@@ -1,0 +1,65 @@
+---
+import Layout from '@layouts/Layout.astro'
+---
+
+<Layout
+  title={'Preakredytacja'}
+  description={'Kup akredytację na SkierCon - konwent letniego chilloutu. Tylko w preakredytacji możesz zamówić SkierQubas, konwentową koszulkę i papierowy informator. Przedsprzedaż trwa do 7 lipca.'}
+>
+  <h1 class="mt-28 mb-8 md:mb-12 text-3xl md:text-4xl font-bold text-center">
+    Preakredytacja
+  </h1>
+  <div class="w-full md:w-1/2 m-auto">
+    <p class="mb-4">Dziękujemy za złożenie zamówienia!</p>
+    <p class="mb-4">
+      Jak tylko wpłata zostanie zaksięgowana, otrzymasz od nas maila
+      z&nbsp;potwierdzeniem i&nbsp;<b>kodem QR</b>, który należy okazać przy
+      akredytacji.
+    </p>
+    <p class="mb-12">
+      Minęło trochę czasu, a&nbsp;mail nadal nie dotarł? <br /> Sprawdź folder ze
+      spamem lub skontaktuj się z&nbsp;nami mailowo
+      <a href="mailto:akredytacja@skiercon.pl" class="link link-info"
+        >akredytacja@skiercon.pl</a
+      >
+    </p>
+    <p class="mb-4 text-xl text-center">Do zobaczenia na SkierConie 2023!</p>
+    <div class="flex justify-center">
+      <button class="btn" data-confetti-button>Widzimy się!</button>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import confetti from 'canvas-confetti'
+
+  celebrate()
+  setTimeout(celebrate, 1000)
+
+  document
+    .querySelector('[data-confetti-button]')!
+    .addEventListener('click', celebrate)
+
+  function celebrate() {
+    confetti({
+      angle: 125,
+      spread: randomInRange(70, 90),
+      particleCount: randomInRange(50, 100),
+      startVelocity: randomInRange(60, 90),
+      disableForReducedMotion: true,
+      origin: { y: 1, x: 1 },
+    })
+    confetti({
+      angle: 45,
+      spread: randomInRange(70, 100),
+      particleCount: randomInRange(50, 80),
+      startVelocity: randomInRange(60, 90),
+      disableForReducedMotion: true,
+      origin: { y: 1, x: 0 },
+    })
+  }
+
+  function randomInRange(min: number, max: number) {
+    return Math.random() * (max - min) + min
+  }
+</script>
