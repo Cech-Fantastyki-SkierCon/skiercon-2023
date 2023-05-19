@@ -47,42 +47,52 @@
         <tr>
           <td>Akredytacja</td>
           <td>
-            {$preakreForm.preakreType === 'premium' ? '100 zł' : '50 zł'}
+            {$preakreForm.preakreType === 'premium'
+              ? `${($preakreForm.additionalPayment ?? 0) + 100},00 zł`
+              : '50,00 zł'}
           </td>
         </tr>
         {#if $preakreForm.mug}
           <tr>
             <td>Kubek</td>
-            <td>50 zł</td>
+            <td>50,00 zł</td>
           </tr>
         {/if}
         {#if $preakreForm.tshirt}
           <tr>
             <td>Koszulka ({$preakreForm.tshirt})</td>
-            <td>40 zł</td>
+            <td>40,00 zł</td>
           </tr>
         {/if}
         {#if $preakreForm.sleep}
           <tr>
             <td>Nocleg</td>
-            <td>5 zł</td>
+            <td>5,00 zł</td>
           </tr>
         {/if}
         {#if $preakreForm.paper}
           <tr>
             <td>Informator</td>
-            <td>0 zł</td>
+            <td>0,00 zł</td>
           </tr>
         {/if}
         <tr class="font-bold uppercase">
           <td>Do zapłaty</td>
-          <td class="text-cyan-400 text-2xl">{$preakreAmount} zł</td>
+          <td class="text-cyan-400 text-2xl">{$preakreAmount},00 zł</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <div class="divider my-8" />
+  {#if $preakreForm.mug || $preakreForm.tshirt || $preakreForm.paper}
+    <div class="divider mb-6" />
+    <p class="my-4">
+      Nie wysyłamy zamówionych przedmiotów. Odbiór osobisty wyłącznie przy
+      akredytacji na konwent.
+    </p>
+  {/if}
+
+  <div class="divider mb-8" />
 
   <h2>Wymagane zgody <span class="required">*</span></h2>
 

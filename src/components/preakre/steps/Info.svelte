@@ -1,19 +1,70 @@
 <script lang="ts">
   import Controls from '../Controls.svelte'
-  import { preakreForm, preakreStep } from '../preakreStore'
+  import { preakreForm, preakreStep, preakrePayMore } from '../preakreStore'
 </script>
 
 <form on:submit|preventDefault={() => $preakreStep++}>
   {#if $preakreForm.preakreType === 'premium'}
-    <p class="mb-4">
-      Jako <b>Pszczeli Patron</b> wpierasz finansowo organizację SkierConu - otrzymasz
-      specjalny identyfikator, kilka drobnych upominków (w&nbsp;tym pamiątkowego
-      SkierCoina) i&nbsp;naszą wdzięczność.
+    <p class="mb-2">
+      U nas zawsze jest jak w&nbsp;ulu i&nbsp;pracujemy dzielnie jak pszczółki,
+      by przygotować dla Was naprawdę magiczny konwent. W&nbsp;tym roku możecie
+      wesprzeć nas i&nbsp;objąć Pszczelim Patronatem.
     </p>
-    <p>
-      Pszczelego Patrona <b>nie obejmują zniżki</b> na akredytację (jako Twórcy Programu
-      lub uczestnika konkursu).
+    <label class="label cursor-pointer justify-start">
+      <input
+        type="radio"
+        name="payMore"
+        class="radio mr-4"
+        checked
+        value={false}
+        bind:group={$preakrePayMore}
+      />
+      <span class="label-text text-cyan-400">100.00 zł</span>
+    </label>
+    <label class="label cursor-pointer justify-start">
+      <input
+        type="radio"
+        name="payMore"
+        class="radio mr-4"
+        value={true}
+        bind:group={$preakrePayMore}
+      />
+      <span class="label-text">wincyj!</span>
+    </label>
+    {#if $preakrePayMore}
+      <div class="form-control w-full mb-6">
+        <label class="label" for="person">
+          <span class="text-xl"
+            >Ile więcej? {#if ($preakreForm.additionalPayment ?? 0) % 100 === 69}
+              <span class="text-xl text-info">nice!</span>
+            {/if}{#if ($preakreForm.additionalPayment ?? 0) % 1000 === 420}
+              <span class="text-xl text-green-500">chill!</span>
+            {/if}</span
+          >
+        </label>
+        <input
+          id="person"
+          type="number"
+          min="0"
+          max="10000"
+          step="1"
+          required
+          placeholder="np. 150 zł"
+          class="input input-bordered w-full text-cyan-400"
+          bind:value={$preakreForm.additionalPayment}
+          maxlength="60"
+          autocomplete="given-name"
+        />
+      </div>
+    {/if}
+    <p class="my-4">
+      <b>Pszczeli Patron</b> poszczycić się będzie mógł dostojną pszczelą koroną
+      (znaną w&nbsp;szerszym gronie jako opaska z&nbsp;czułkami) i&nbsp;specjalnym
+      identyfikatorem, a&nbsp;ubytek w portfelu uzupełni pamiątkowym SkierCoinem.
+      Życie osłodzimy mu w&nbsp;podzięce miodkiem z&nbsp;lokalnej pasieki i&nbsp;ogromem
+      wdzięczności za wsparcie.
     </p>
+
     <div class="divider" />
   {/if}
 
@@ -50,8 +101,8 @@
 
   <div class="mt-7">
     <p>
-      Na podany adres e-mail zostanie wysłany <b>kod QR</b>, który należy okazać
-      przy akredytacji.
+      Na podany <b>adres e-mail</b> zostanie wysłany <b>kod QR</b>, który należy
+      okazać przy akredytacji.
     </p>
     {#if $preakreForm.preakreType === 'normal'}
       <p class="mt-4">

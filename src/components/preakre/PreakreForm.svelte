@@ -3,7 +3,7 @@
   import SleepSvelte from './steps/Sleep.svelte'
   import GadgetsSvelte from './steps/Gadgets.svelte'
   import SummarySvelte from './steps/Summary.svelte'
-  import { preakreForm, preakreStep } from './preakreStore'
+  import { preakreAmount, preakreForm, preakreStep } from './preakreStore'
   import Steps from './Steps.svelte'
 
   function nextStep(preakreType: 'premium' | 'normal') {
@@ -17,6 +17,9 @@
     Preakredytacja
   {:else}
     {$preakreForm.preakreType === 'normal' ? 'Akredytacja' : 'Pszczeli Patron'}
+    <span class=" text-2xl">
+      (<span class="text-cyan-500">{$preakreAmount},00 zł</span>)
+    </span>
   {/if}
 </h1>
 
@@ -51,7 +54,7 @@
       <div class="card-body">
         <h2 class="card-title">
           Pszczeli Patron
-          <div class="badge badge-error">100&nbsp;zł</div>
+          <div class="badge badge-error">100+&nbsp;zł</div>
         </h2>
         <p class="mb-4 lg:mb-0">Wspieram SkierCon! Chcę zostać mecenasem!</p>
         <div class="flex justify-between">
