@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - nginx-proxy
+    ports:
+      - '${VPS_PORT}:3000'
+    tty: true
+
+networks:
+  nginx-proxy:
