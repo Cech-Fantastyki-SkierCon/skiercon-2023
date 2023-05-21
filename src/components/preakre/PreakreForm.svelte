@@ -78,7 +78,7 @@
 
   <div class="text-center mt-16">
     Informacje dla osób ze szczególnymi potrzebami - <a
-      href="/dostepny-skiercon"
+      href="/dostepnosc"
       class="link link-info">Dostępny SkierCon</a
     >
   </div>
