@@ -19,7 +19,8 @@
         </p>
         <p>
           Za symboliczną opłatą udostępniamy uczestnikom konwentu miejsce na
-          sleep-roomie. <b>Hala sportowa</b> pobliskiej szkoły.
+          sleep-roomie, na hali sportowej Zespołu Szkół Zawodowych
+          Nr&nbsp;2&nbsp;w&nbsp;Skierniewicach (ok.&nbsp;400m od konwentu).
         </p>
       </div>
     </label>

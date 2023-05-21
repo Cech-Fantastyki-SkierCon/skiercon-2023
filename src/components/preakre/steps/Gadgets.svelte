@@ -112,6 +112,12 @@
 
   <div class="divider" />
 
+  <p class="my-6">
+    SkierQubas i koszulkę można będzie też nabyć w&nbsp;sklepiku konwentowym
+  </p>
+
+  <div class="divider" />
+
   <div class="form-control mt-4">
     <label class="label cursor-pointer items-start justify-start">
       <input
