@@ -2,10 +2,12 @@ import type { CreateTransactionDto } from 'src/__gen-api'
 import { writable } from 'svelte/store'
 
 const preakreFormLS = localStorage.getItem('preakreForm')
-export const preakreForm = writable<CreateTransactionDto>(
+export const preakreForm = writable<
+  CreateTransactionDto & { payMore: boolean }
+>(
   preakreFormLS
     ? JSON.parse(preakreFormLS)
-    : ({
+    : {
         captchaToken: '',
         email: '',
         mug: false,
@@ -16,8 +18,9 @@ export const preakreForm = writable<CreateTransactionDto>(
         person: '',
         preakreType: 'normal',
         age: 18,
-        additionalPayment: 0,
-      } satisfies CreateTransactionDto)
+        additionalPayment: 100,
+        payMore: false,
+      }
 )
 
 const preakreAmountLS = localStorage.getItem('preakreAmount')
@@ -28,14 +31,15 @@ export const preakreAmount = writable(
 const preakreStepLs = localStorage.getItem('preakreStep')
 export const preakreStep = writable(preakreStepLs ? parseInt(preakreStepLs) : 0)
 
-const preakrePayMoreLs = localStorage.getItem('preakrePayMore')
-export const preakrePayMore = writable(preakrePayMoreLs === 'true')
-
 preakreForm.subscribe(form => {
-  let amount = 50
-  if (form.additionalPayment)
-    amount += parseInt(form.additionalPayment.toString())
-  if (form.preakreType === 'premium') amount += 50
+  let amount = 0
+  if (form.preakreType === 'normal') {
+    amount += 50
+  } else if (form.payMore) {
+    amount += form.additionalPayment || 0
+  } else {
+    amount += 100
+  }
   if (form.mug) amount += 50
   if (form.sleep) amount += 5
   if (form.tshirt) amount += 40
@@ -46,10 +50,6 @@ preakreForm.subscribe(form => {
 
 preakreAmount.subscribe(state => {
   localStorage.setItem('preakreAmount', JSON.stringify(state))
-})
-
-preakrePayMore.subscribe(state => {
-  localStorage.setItem('preakrePayMore', JSON.stringify(state))
 })
 
 preakreStep.subscribe(step => {

@@ -1,6 +1,6 @@
 <script lang="ts">
   import Controls from '../Controls.svelte'
-  import { preakreForm, preakreStep, preakrePayMore } from '../preakreStore'
+  import { preakreForm, preakreStep } from '../preakreStore'
 </script>
 
 <form on:submit|preventDefault={() => $preakreStep++}>
@@ -17,7 +17,7 @@
         class="radio mr-4"
         checked
         value={false}
-        bind:group={$preakrePayMore}
+        bind:group={$preakreForm.payMore}
       />
       <span class="label-text text-cyan-400">100.00 zł</span>
     </label>
@@ -27,15 +27,15 @@
         name="payMore"
         class="radio mr-4"
         value={true}
-        bind:group={$preakrePayMore}
+        bind:group={$preakreForm.payMore}
       />
       <span class="label-text">wincyj!</span>
     </label>
-    {#if $preakrePayMore}
+    {#if $preakreForm.payMore}
       <div class="form-control w-full mb-6">
         <label class="label" for="person">
-          <span class="text-xl"
-            >Ile więcej? {#if ($preakreForm.additionalPayment ?? 0) % 100 === 69}
+          <span class="text-xl">
+            Ile chcesz przeznaczyć? (Co najmniej 100,00 zł) {#if ($preakreForm.additionalPayment ?? 0) % 100 === 69}
               <span class="text-xl text-info">nice!</span>
             {/if}{#if ($preakreForm.additionalPayment ?? 0) % 1000 === 420}
               <span class="text-xl text-green-500">chill!</span>
@@ -45,7 +45,7 @@
         <input
           id="person"
           type="number"
-          min="0"
+          min="100"
           max="10000"
           step="1"
           required

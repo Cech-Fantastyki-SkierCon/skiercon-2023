@@ -11,7 +11,19 @@
     loading = true
     try {
       $preakreForm.captchaToken = await getRecaptchaToken()
-      const res = await api.transactions.create($preakreForm)
+      const data = { ...$preakreForm }
+      delete data.payMore
+      if (data.preakreType === 'normal') {
+        data.additionalPayment = undefined
+      } else {
+        data.additionalPayment -= 100
+      }
+
+      if (data.additionalPayment === 0) {
+        data.additionalPayment = undefined
+      }
+
+      const res = await api.transactions.create(data)
       window.localStorage.removeItem('preakreForm')
       window.localStorage.removeItem('preakreState')
       window.localStorage.removeItem('preakreStep')
@@ -48,7 +60,7 @@
           <td>Akredytacja</td>
           <td>
             {$preakreForm.preakreType === 'premium'
-              ? `${($preakreForm.additionalPayment ?? 0) + 100},00 zł`
+              ? `${$preakreForm.additionalPayment},00 zł`
               : '50,00 zł'}
           </td>
         </tr>
