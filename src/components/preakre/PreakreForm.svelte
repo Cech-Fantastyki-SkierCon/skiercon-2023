@@ -16,6 +16,19 @@
   {#if $preakreStep === 0}
     Preakredytacja
   {:else}
+    {#if $preakreForm.preakreType === 'premium'}
+      <div class="flex justify-center mb-12">
+        <div class="max-w-sm">
+          <img
+            src="/pszczola.png"
+            alt=""
+            width="608"
+            height="430"
+            class="max-w-full"
+          />
+        </div>
+      </div>
+    {/if}
     {$preakreForm.preakreType === 'normal' ? 'Akredytacja' : 'Pszczeli Patron'}
     <span class=" text-2xl">
       (<span class="text-cyan-500">{$preakreAmount},00 zł</span>)
