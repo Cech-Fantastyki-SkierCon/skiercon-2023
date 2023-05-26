@@ -41,7 +41,7 @@
       />
       <div>
         <p class="mb-3 text-lg md:text-xl">
-          SkierQubas - Kubek (<span class="text-cyan-400">+50,00&nbsp;zł</span>)
+          SkierQubas - Kubek (<span class="text-cyan-400">+60,00&nbsp;zł</span>)
         </p>
         <p>
           Legendarny offhand, stworzony w&nbsp;<b
@@ -113,7 +113,18 @@
   <div class="divider" />
 
   <p class="my-6 alert alert-info shadow-lg">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      class="stroke-current flex-shrink-0 w-6 h-6"
+      ><path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+      /></svg
+    >
     SkierQubas i koszulkę będzie można też nabyć w&nbsp;sklepiku konwentowym.
   </p>
 

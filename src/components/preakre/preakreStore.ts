@@ -40,7 +40,7 @@ preakreForm.subscribe(form => {
   } else {
     amount += 100
   }
-  if (form.mug) amount += 50
+  if (form.mug) amount += 60
   if (form.sleep) amount += 5
   if (form.tshirt) amount += 40
 
