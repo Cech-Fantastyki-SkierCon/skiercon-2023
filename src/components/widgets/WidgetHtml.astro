@@ -1,0 +1,12 @@
+---
+import type { WidgetHtml } from 'src/__gen-api'
+export interface Props {
+  widget: WidgetHtml
+}
+
+const widget = Astro.props.widget
+---
+
+<div class="wysiwyg">
+  <Fragment set:html={widget.html} />
+</div>

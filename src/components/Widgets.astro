@@ -6,6 +6,7 @@ import WidgetTextPlusImage from './widgets/WidgetTextPlusImage.astro'
 import WidgetText from './widgets/WidgetText.astro'
 import WidgetFullImages from './widgets/WidgetFullImages.astro'
 import WidgetButton from './widgets/WidgetButton.astro'
+import WidgetHtml from './widgets/WidgetHtml.astro'
 
 export interface Props {
   widgets: Array<PageDto['widgets']>
@@ -27,6 +28,8 @@ export interface Props {
         return <WidgetFullImages widget={widget} />
       case 'button':
         return <WidgetButton widget={widget} />
+      case 'html': 
+        return <WidgetHtml widget={widget} />
       default:
         return <></>
     }

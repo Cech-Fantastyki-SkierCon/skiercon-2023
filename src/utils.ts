@@ -1,6 +1,9 @@
 import child_process from 'node:child_process'
 
-export function fixOrphans(text: string): string {
+export function fixOrphans(text?: string): string {
+  if (!text) {
+    return ''
+  }
   return text.replace(/ (.) /g, ' $1&nbsp;')
 }
 
