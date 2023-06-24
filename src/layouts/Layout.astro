@@ -162,7 +162,7 @@ const { title, description } = Astro.props
     content: ' ↗';
   }
 
-  iframe {
+  iframe[src*='http'] {
     width: 100%;
     min-height: 75vh;
   }
