@@ -2,9 +2,7 @@ import type { CreateTransactionDto } from 'src/__gen-api'
 import { writable } from 'svelte/store'
 
 const preakreFormLS = localStorage.getItem('preakreForm')
-export const preakreForm = writable<
-  CreateTransactionDto & { payMore: boolean }
->(
+export const preakreForm = writable<any>(
   preakreFormLS
     ? JSON.parse(preakreFormLS)
     : {

@@ -33,21 +33,18 @@
     </label>
     {#if $preakreForm.payMore}
       <div class="form-control w-full mb-6">
-        <label class="label" for="person">
+        <label class="label" for="additional">
           <span class="text-xl">
-            Ile chcesz przeznaczyć? (Co najmniej 100,00 zł) {#if ($preakreForm.additionalPayment ?? 0) % 100 === 69}
-              <span class="text-xl text-info">nice!</span>
-            {/if}{#if ($preakreForm.additionalPayment ?? 0) % 1000 === 420}
-              <span class="text-xl text-green-500">chill!</span>
-            {/if}</span
-          >
+            Ile chcesz przeznaczyć? <br />(Co najmniej 100,00 zł, zaokrąglij do
+            10)
+          </span>
         </label>
         <input
-          id="person"
+          id="additional"
           type="number"
           min="100"
           max="10000"
-          step="1"
+          step="10"
           required
           placeholder="np. 150 zł"
           class="input input-bordered w-full text-cyan-400"
@@ -65,8 +62,20 @@
       wdzięczności za wsparcie.
     </p>
     <p class="my-6 alert alert-info shadow-lg">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-      Pszczelego Patrona nie obejmują zniżki na akredytację (jako Twórcy Programu lub uczestnika konkursu JaSkier/OSkier). 
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        class="stroke-current flex-shrink-0 w-6 h-6"
+        ><path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        /></svg
+      >
+      Pszczelego Patrona nie obejmują zniżki na akredytację (jako Twórcy Programu
+      lub uczestnika konkursu JaSkier/OSkier).
     </p>
 
     <div class="divider" />
@@ -109,12 +118,23 @@
       okazać przy akredytacji.
     </p>
     {#if $preakreForm.preakreType === 'normal'}
-        <p class="my-6 alert alert-info shadow-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        Jeśli planujesz być Twórcą Programu lub uczestnikiem któregoś
-        z&nbsp;konkursów (JaSkier/OSkier), zwróć uwagę, żeby podać ten sam adres
-        e-mail co w zgłoszeniu punktu programu lub zgłoszeniu konkursowym.
-        W&nbsp;oparciu o e-mail będziemy mogli zweryfikować Twoją zniżkę.
+      <p class="my-6 alert alert-info shadow-lg">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          class="stroke-current flex-shrink-0 w-6 h-6"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          /></svg
+        >
+        Jeśli planujesz być Twórcą Programu lub uczestnikiem któregoś z&nbsp;konkursów
+        (JaSkier/OSkier), zwróć uwagę, żeby podać ten sam adres e-mail co w zgłoszeniu
+        punktu programu lub zgłoszeniu konkursowym. W&nbsp;oparciu o e-mail będziemy
+        mogli zweryfikować Twoją zniżkę.
       </p>
     {/if}
   </div>

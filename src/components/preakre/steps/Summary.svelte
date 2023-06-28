@@ -23,7 +23,65 @@
         data.additionalPayment = undefined
       }
 
-      const res = await api.transactions.create(data)
+      // migration
+      const tshirtsMap = [
+        { id: 1, name: 'XS' },
+        { id: 2, name: 'S' },
+        { id: 3, name: 'M' },
+        { id: 4, name: 'L' },
+        { id: 5, name: 'XL' },
+        { id: 6, name: '2XL' },
+        { id: 7, name: '3XL' },
+        { id: 8, name: '4XL' },
+      ]
+
+      const migrationData = {}
+      migrationData.p24email = data.email
+      migrationData.person = data.person
+      migrationData.captchaToken = data.captchaToken
+      migrationData.order = []
+      migrationData.order.push({
+        shopItemId: data.preakreType === 'premium' ? 2 : 1,
+        quantity: 1,
+      })
+      if (data.mug) {
+        migrationData.order.push({
+          shopItemId: 3,
+          quantity: 1,
+        })
+      }
+      if (data.sleep) {
+        migrationData.order.push({
+          shopItemId: 5,
+          quantity: 1,
+        })
+      }
+      if (data.paper) {
+        migrationData.order.push({
+          shopItemId: 6,
+          quantity: 1,
+        })
+      }
+      if (data.tshirt) {
+        migrationData.order.push({
+          shopItemId: 4,
+          quantity: 1,
+          shopItemVariantId: tshirtsMap.find(
+            tshirt => tshirt.name === data.tshirt
+          ).id,
+        })
+      }
+      if (data.additionalPayment) {
+        const mecenats = Math.ceil(data.additionalPayment / 10)
+        new Array(mecenats).fill(0).forEach(() => {
+          migrationData.order.push({
+            shopItemId: 7,
+            quantity: 1,
+          })
+        })
+      }
+
+      const res = await api.transactions.create(migrationData)
       window.localStorage.removeItem('preakreForm')
       window.localStorage.removeItem('preakreState')
       window.localStorage.removeItem('preakreStep')
@@ -67,7 +125,7 @@
         {#if $preakreForm.mug}
           <tr>
             <td>Kubek</td>
-            <td>50,00 zł</td>
+            <td>60,00 zł</td>
           </tr>
         {/if}
         {#if $preakreForm.tshirt}
@@ -99,9 +157,20 @@
   {#if $preakreForm.mug || $preakreForm.tshirt || $preakreForm.paper}
     <div class="divider mb-6" />
     <p class="my-6 alert alert-info shadow-lg">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current flex-shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-      Nie wysyłamy zamówionych przedmiotów. Odbiór osobisty wyłącznie na miejscu podczas
-      akredytacji.
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        class="stroke-current flex-shrink-0 w-6 h-6"
+        ><path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        /></svg
+      >
+      Nie wysyłamy zamówionych przedmiotów. Odbiór osobisty wyłącznie na miejscu
+      podczas akredytacji.
     </p>
   {/if}
 
