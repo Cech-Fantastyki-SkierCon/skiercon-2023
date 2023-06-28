@@ -80,6 +80,12 @@
           })
         })
       }
+      if (data.transportHelp) {
+        migrationData.order.push({
+          shopItemId: 8,
+          quantity: 1,
+        })
+      }
 
       const res = await api.transactions.create(migrationData)
       window.localStorage.removeItem('preakreForm')
