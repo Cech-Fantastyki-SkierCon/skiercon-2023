@@ -73,11 +73,9 @@
       }
       if (data.additionalPayment) {
         const mecenats = Math.ceil(data.additionalPayment / 10)
-        new Array(mecenats).fill(0).forEach(() => {
-          migrationData.order.push({
-            shopItemId: 7,
-            quantity: 1,
-          })
+        migrationData.order.push({
+          shopItemId: 7,
+          quantity: mecenats,
         })
       }
       if (data.transportHelp) {
