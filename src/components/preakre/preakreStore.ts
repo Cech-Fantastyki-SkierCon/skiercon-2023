@@ -1,4 +1,3 @@
-import type { CreateTransactionDto } from 'src/__gen-api'
 import { writable } from 'svelte/store'
 
 const preakreFormLS = localStorage.getItem('preakreForm')
@@ -21,12 +20,22 @@ export const preakreForm = writable<any>(
       }
 )
 
+preakreForm.update(form => {
+  return {
+    ...form,
+    preakreType: 'normal',
+  }
+})
+
 const preakreAmountLS = localStorage.getItem('preakreAmount')
 export const preakreAmount = writable(
   preakreAmountLS ? parseInt(preakreAmountLS) : 0
 )
 
-const preakreStepLs = localStorage.getItem('preakreStep')
+let preakreStepLs = localStorage.getItem('preakreStep')
+if (preakreStepLs === '0') {
+  preakreStepLs = '1'
+}
 export const preakreStep = writable(preakreStepLs ? parseInt(preakreStepLs) : 0)
 
 preakreForm.subscribe(form => {

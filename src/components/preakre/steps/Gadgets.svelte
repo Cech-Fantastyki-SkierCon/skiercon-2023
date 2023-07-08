@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { CreateTransactionDto } from 'src/__gen-api'
   import { preakreForm, preakreStep } from '../preakreStore'
   import Controls from '../Controls.svelte'
 
@@ -8,16 +7,7 @@
     $preakreForm.tshirt = undefined
   }
 
-  const tshirtSizes = [
-    'XS',
-    'S',
-    'M',
-    'L',
-    'XL',
-    '2XL',
-    '3XL',
-    '4XL',
-  ] satisfies CreateTransactionDto['tshirt'][]
+  const tshirtSizes = ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL'] as const
 </script>
 
 <form on:submit|preventDefault={() => $preakreStep++}>
@@ -33,15 +23,17 @@
   {/if}
 
   <div class="form-control mt-4">
+    <p>Przedsprzedaż zakończona</p>
     <label class="label cursor-pointer items-start justify-start">
       <input
         type="checkbox"
         class="checkbox mr-4 mt-1"
         bind:checked={$preakreForm.mug}
+        disabled
       />
       <div>
-        <p class="mb-3 text-lg md:text-xl">
-          SkierQubas - Kubek (<span class="text-cyan-400">+60,00&nbsp;zł</span>)
+        <p class="mb-3 text-lg md:text-xl line-through">
+          SkierQubas - Kubek (<span class="text-gray-400">+60,00&nbsp;zł</span>)
         </p>
         <p>
           Legendarny offhand, stworzony w&nbsp;<b
@@ -70,15 +62,17 @@
   <div class="divider" />
 
   <div class="form-control mt-4">
+    <p>Przedsprzedaż zakończona</p>
     <label class="label cursor-pointer items-start justify-start">
       <input
         type="checkbox"
         class="checkbox mr-4 mt-1"
         bind:checked={wantTshirt}
+        disabled
       />
       <div>
-        <p class="mb-3 text-lg md:text-xl">
-          Koszulka konwentowa (<span class="text-cyan-400">+40,00&nbsp;zł</span
+        <p class="mb-3 text-lg md:text-xl line-through">
+          Koszulka konwentowa (<span class="text-gray-400">+40,00&nbsp;zł</span
           >)
         </p>
         <p>
@@ -131,15 +125,17 @@
   <div class="divider" />
 
   <div class="form-control mt-4">
+    <p>Oferta zakończona</p>
     <label class="label cursor-pointer items-start justify-start">
       <input
         type="checkbox"
         class="checkbox mr-4 mt-1"
         bind:checked={$preakreForm.paper}
+        disabled
       />
       <div>
-        <p class="mb-3 text-lg md:text-xl">
-          Papierowy informator konwentowy (<span class="text-cyan-400"
+        <p class="mb-3 text-lg md:text-xl line-through">
+          Papierowy informator konwentowy (<span class="text-gray-400"
             >+0,00&nbsp;zł</span
           >)
         </p>

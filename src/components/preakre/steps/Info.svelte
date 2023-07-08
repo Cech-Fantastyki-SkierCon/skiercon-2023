@@ -232,5 +232,5 @@
       </div>
     </label>
   </div>
-  <Controls />
+  <Controls firstStep={true} />
 </form>
