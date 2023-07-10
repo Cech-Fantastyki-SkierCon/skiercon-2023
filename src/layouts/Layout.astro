@@ -10,6 +10,8 @@ import { getGitRevision } from 'src/utils'
 export interface Props {
   title: string
   description: string
+  fullWidth: boolean
+  hideFooter?:  boolean
 }
 
 const gitRevision = getGitRevision()
@@ -32,7 +34,7 @@ if (import.meta.env.SECRET_ROLLBAR) {
 
 const { data: programSpeakers } = await api.programSpeakers.allProfiles({guests: true})
 const guests = programSpeakers.filter(speaker => speaker.guest)
-const { title, description } = Astro.props
+const { title, description, fullWidth, hideFooter } = Astro.props
 ---
 
 <!DOCTYPE html>
@@ -119,11 +121,15 @@ const { title, description } = Astro.props
       </noscript>
     )}
     <Nav />
-    <main class="container main mt-24 md:mt-20 mb-24">
+    <main class={`${fullWidth ? '' : 'container'} main mt-24 md:mt-20 mb-24`}>
       <slot />
     </main>
-    <Footer />
-    <Cookies />
+    {!hideFooter && (
+      <>
+      <Footer />
+      <Cookies />
+      </>
+    )}
   </body>
 </html>
 <style is:global lang="scss">
