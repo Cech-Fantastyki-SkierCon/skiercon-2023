@@ -36,7 +36,7 @@ let preakreStepLs = localStorage.getItem('preakreStep')
 if (preakreStepLs === '0') {
   preakreStepLs = '1'
 }
-export const preakreStep = writable(preakreStepLs ? parseInt(preakreStepLs) : 0)
+export const preakreStep = writable(preakreStepLs ? parseInt(preakreStepLs) : 1)
 
 preakreForm.subscribe(form => {
   let amount = 0
