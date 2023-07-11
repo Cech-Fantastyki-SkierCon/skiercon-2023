@@ -10,10 +10,6 @@ interface Props {
   places: ProgramPlace[]
 }
 
-//  Piątek 16:00-01:00
-//  Sobota 8:00-04:00
-//  Niedziela 9:00-16:30
-
 function isEventInDay(
   event: ProgramEvent,
   day: 'friday' | 'saturday' | 'sunday'
@@ -41,9 +37,6 @@ export function TimelineComponent(props: Props) {
     (['friday', 'saturday', 'sunday'] as const)[moment().day() - 5] || 'friday'
   )
   const [timeline, setTimeline] = useState<Timeline>()
-  useEffect(() => {
-    moment.locale('pl')
-  }, [])
 
   useEffect(() => {
     if (timeline) timeline.destroy()
@@ -51,50 +44,49 @@ export function TimelineComponent(props: Props) {
     const events = props.events.filter(event => isEventInDay(event, activeDay))
 
     const options = {
+      start: '',
+      end: '',
       min: '',
       max: '',
     }
 
     if (activeDay === 'friday') {
-      options.min = '2023-07-28T16:00:00+02:00'
-      options.max = '2023-07-29T01:00:00+02:00'
+      options.start = '2023-07-28T16:00:00+02:00'
+      options.end = '2023-07-29T01:00:00+02:00'
     } else if (activeDay === 'saturday') {
-      options.min = '2023-07-29T08:00:00+02:00'
-      options.max = '2023-07-30T04:00:00+02:00'
+      options.start = '2023-07-29T08:00:00+02:00'
+      options.end = '2023-07-30T04:00:00+02:00'
     } else if (activeDay === 'sunday') {
-      options.min = '2023-07-30T09:00:00+02:00'
-      options.max = '2023-07-30T16:30:00+02:00'
+      options.start = '2023-07-30T09:00:00+02:00'
+      options.end = '2023-07-30T16:30:00+02:00'
     }
+
+    options.min = options.start
+    options.max = options.end
 
     setTimeline(createTimeline(events, props.places, options))
   }, [activeDay])
 
   return (
     <div>
-      <nav className="fixed bottom-0 bg-base-200 z-10 p-1 w-full ">
+      <nav className="fixed top-16 bg-base-200 z-10 p-1 w-full border-t border-zinc-800">
         <div className="container flex justify-center">
-          <div className="tabs">
+          <div className="tabs tabs-boxed">
             <a
               onClick={() => setActiveDay('friday')}
-              className={`tab  tab-lg tab-bordered ${
-                activeDay === 'friday' && 'tab-active'
-              }`}
+              className={`tab ${activeDay === 'friday' && 'tab-active'}`}
             >
               Piątek
             </a>
             <a
               onClick={() => setActiveDay('saturday')}
-              className={`tab  tab-lg tab-bordered ${
-                activeDay === 'saturday' && 'tab-active'
-              }`}
+              className={`tab ${activeDay === 'saturday' && 'tab-active'}`}
             >
               Sobota
             </a>
             <a
               onClick={() => setActiveDay('sunday')}
-              className={`tab  tab-lg tab-bordered ${
-                activeDay === 'sunday' && 'tab-active'
-              }`}
+              className={`tab ${activeDay === 'sunday' && 'tab-active'}`}
             >
               Niedziela
             </a>
@@ -102,6 +94,17 @@ export function TimelineComponent(props: Props) {
         </div>
       </nav>
       <div id="container"></div>
+
+      {/* Modal */}
+      <input type="checkbox" id="eventModalCheckbox" className="modal-toggle" />
+      <label htmlFor="eventModalCheckbox" className="modal cursor-pointer">
+        <label
+          id="eventModal"
+          className="modal-box relative"
+          htmlFor=""
+        ></label>
+      </label>
+      {/* eo Modal */}
     </div>
   )
 }
