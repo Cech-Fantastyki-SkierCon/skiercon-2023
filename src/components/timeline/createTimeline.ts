@@ -26,10 +26,12 @@ export function createTimeline(
   const groups = places.map(place => ({
     id: place.id,
     content:
-      `<div font-size="14px">${place.name}</div>` +
-      (place.programBlock
-        ? ` <div style="font-size: 11px; line-height: 12x;">${place.programBlock.name}</div>`
-        : ''),
+      window.innerWidth < 600
+        ? ''
+        : `<div font-size="14px">${place.name}</div>` +
+          (place.programBlock
+            ? ` <div style="font-size: 11px; line-height: 12x;">${place.programBlock.name}</div>`
+            : ''),
   }))
 
   const container = document.getElementById('container')!
@@ -46,18 +48,20 @@ export function createTimeline(
     margin: { item: { horizontal: 0, vertical: 2 } },
     stack: true,
     showMajorLabels: false,
+    timeAxis: { scale: 'hour' },
     moment(date: any) {
       return moment(date).utcOffset('+02:00')
     },
     // @ts-ignore
     loadingScreenTemplate() {
       return `<div class="flex justify-center items-center h-screen w-full">
-        <div>
+        <div class="mb-20">
           Ładowanie programu...
         </div>
       </div>`
     },
     template: itemTemplate,
+
     ...options,
   })
 
@@ -168,6 +172,9 @@ export function createTimeline(
         </div>
       </div>
 
+      <div class="modal-action">
+        <label onclick="eventModalCheckbox.checked = false" class="btn">Zamknij</label>
+      </div>
       `
 
       // Open popup

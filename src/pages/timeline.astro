@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import Widgets from '@components/Widgets.astro'
 import { api } from 'src/api'
 import { TimelineComponent } from '@components/timeline/Timeline.tsx'
 
@@ -13,7 +12,7 @@ places.sort((a, b) => (a.programBlock!.name > b.programBlock!.name ? 1 : -1))
 ---
 
 <Layout
-  title={'Program'}
+  title={'Program - Timeline'}
   description={'Program SkierConu 2023'}
   fullWidth
   hideFooter

@@ -14,7 +14,7 @@ function isEventInDay(
   event: ProgramEvent,
   day: 'friday' | 'saturday' | 'sunday'
 ) {
-  const dateStart = moment(event.dateStart)
+  const dateStart = moment(event.dateStart).add(-4, 'hours')
   const dateEnd = moment(event.dateEnd)
   const dayStart = dateStart.day()
   const dayEnd = dateEnd.day()
