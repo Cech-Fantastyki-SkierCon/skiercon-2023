@@ -69,8 +69,13 @@ export function createTimeline(
     const selectId = a.items[0]
     const event = events.find(e => e.id == selectId)
     const startH = moment(event?.dateStart).format('HH:mm')
-    const startDate = moment(event?.dateStart).format('DD') + ' lipca 2023'
     const endH = moment(event?.dateEnd).format('HH:mm')
+    let startDate = moment(event?.dateStart).format('DD') + ' lipca 2023'
+    let time = `${startH} - ${endH}`
+    if (event?.durationMinutes! > 60 * 24) {
+      time = `Non stop`
+      startDate = '28-30 lipca 2023'
+    }
 
     const a11y: string[] = []
     if (event?.place?.a11y)
@@ -104,7 +109,7 @@ export function createTimeline(
         }</div>
       </div>
       <div class="pb-3">
-        <div> ${startH} - ${endH}</div>
+        <div> ${time}</div>
         <div class="text-sm text-gray-400">${startDate}</div>
       </div>
       <div class="pb-3">

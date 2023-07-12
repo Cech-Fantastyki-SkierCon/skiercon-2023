@@ -14,6 +14,7 @@ function isEventInDay(
   event: ProgramEvent,
   day: 'friday' | 'saturday' | 'sunday'
 ) {
+  if (event.durationMinutes! > 60 * 24) return true
   const dateStart = moment(event.dateStart).add(-4, 'hours')
   const dateEnd = moment(event.dateEnd)
   const dayStart = dateStart.day()

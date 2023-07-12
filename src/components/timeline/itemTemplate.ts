@@ -13,6 +13,14 @@ export function itemTemplate({ event }: { event: ProgramEvent }) {
       ? author
       : `${author} ${organization ? `(${organization})` : ''}`
 
+  const startHour = moment(event.dateStart).format('HH:mm')
+  const endHour = moment(event.dateEnd).format('HH:mm')
+
+  let time = `${startHour} - ${endHour}`
+  if (event.durationMinutes! > 60 * 24) {
+    time = `Non stop`
+  }
+
   return `<div style="background-color: ${
     event.type?.color
   }; width: 100%; height: 100%; padding: 5px 7px;">
@@ -21,8 +29,6 @@ export function itemTemplate({ event }: { event: ProgramEvent }) {
           <div style="font-size: 13px">${event.type!.name} ${
     event.a11yForAdults ? '(18+)' : ''
   }</div>
-          <div style="font-size: 13px">${moment(event.dateStart).format(
-            'HH:mm'
-          )} - ${moment(event.dateEnd).format('HH:mm')}</div>
+          <div style="font-size: 13px">${time}</div>
         </div>`
 }
