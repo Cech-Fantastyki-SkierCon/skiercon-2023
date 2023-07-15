@@ -1,0 +1,80 @@
+---
+import type { ProgramEvent } from 'src/__gen-api'
+
+export interface Props {
+  event: ProgramEvent
+}
+const event = Astro.props.event
+
+function getTime(date?: string) {
+  return new Date(date!).toLocaleTimeString('pl', {
+    timeZone: 'Europe/Warsaw',
+    hour: '2-digit',
+    minute: '2-digit',
+  })
+}
+
+function getDate(date?: string) {
+  return new Date(date!).toLocaleDateString('pl', {
+    timeZone: 'Europe/Warsaw',
+    weekday: 'long',
+  })
+}
+---
+
+<div class="p-6 md:p-8 mb-4 border border-zinc-600 rounded-xl">
+  <div class="md:flex md:justify-between">
+    <div>
+      <p class="text-sm">
+        <span class="material-symbols-outlined info-icon"> schedule</span>
+        {getTime(event.dateStart)} - {getTime(event.dateEnd)}, {
+          getDate(event.dateStart)
+        }
+      </p>
+      <p class="text-sm">
+        <span class="material-symbols-outlined info-icon"> location_on</span>
+        {event.place!.name} ({event.place!.programArea!.name})
+      </p>
+      <p class="text-sm">
+        {
+          event.authors.map((x, i) => (
+            <>
+              <span class="material-symbols-outlined info-icon"> person</span>{' '}
+              {x.displayName} {i < event.authors.length - 1 ? ', ' : ''}
+            </>
+          ))
+        }
+      </p>
+    </div>
+    <div>
+      <p class="text-sm">
+        <span class="material-symbols-outlined info-icon"> label</span>
+        {event.type!.name}
+      </p>
+      <p class="text-sm">
+        <span class="material-symbols-outlined info-icon"> layers</span>
+        {event.block!.name}
+      </p>
+    </div>
+  </div>
+
+  <h2 class="text-xl font-bold my-4">{event.name}</h2>
+  <div class="wysiwyg my-2"><Fragment set:html={event.description} /></div>
+  {
+    event.triggers!.length > 0 && (
+      <p class="text-sm">
+        <span class="material-symbols-outlined info-icon"> warning</span>
+        {event.triggers!.map(x => x.name).join(', ')}
+      </p>
+    )
+  }
+</div>
+
+<style lang="scss">
+  .info-icon {
+    font-size: 18px;
+    transform: translateY(3px);
+    display: inline-block;
+    margin-right: 4px;
+  }
+</style>

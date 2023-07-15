@@ -1,0 +1,17 @@
+---
+import ProgramEvent from '@components/ProgramEvent.astro'
+import type { WidgetProgramEvents } from 'src/__gen-api'
+import { api } from 'src/api'
+
+export interface Props {
+  widget: WidgetProgramEvents
+}
+
+const widget = Astro.props.widget
+const events = await api.programEvents
+  .allPublic(JSON.parse(widget.programEventsFilters) as any)
+  .then(res => res.data)
+---
+
+{widget.title && <h2 class="text-2xl font-bold my-6">{widget.title}</h2>}
+{events.map(event => <ProgramEvent event={event} />)}
