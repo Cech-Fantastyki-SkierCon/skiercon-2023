@@ -7,8 +7,6 @@ const [events, places] = await Promise.all([
   api.programEvents.allPublic().then(res => res.data),
   api.programPlaces.all().then(res => res.data),
 ])
-
-places.sort((a, b) => (a.programBlock!.name > b.programBlock!.name ? 1 : -1))
 ---
 
 <Layout
