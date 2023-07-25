@@ -1,15 +1,22 @@
 ---
 import Layout from '@layouts/Layout.astro'
 import Breadcrumbs from '@components/Breadcrumbs.astro'
+import ProgramEventAstro from '@components/ProgramEvent.astro'
 import { api } from 'src/api'
-import type { ProgramSpeakerProfileDto } from 'src/__gen-api'
+import type { ProgramEvent, ProgramSpeakerProfileDto } from 'src/__gen-api'
 import axios from 'axios'
 
 let guest: ProgramSpeakerProfileDto
+let events: ProgramEvent[]
 
 try {
-  const res = await api.programSpeakers.getProfile(Astro.params.slug!)
-  guest = res.data
+  const guestRes = await api.programSpeakers.getProfile(Astro.params.slug!)
+  guest = guestRes.data
+
+  const eventsRes = await api.programEvents.allPublic({
+    authorId: guest.id,
+  })
+  events = eventsRes.data
 } catch (err) {
   if (axios.isAxiosError(err)) {
     return new Response('Nie znaleziono strony', {
@@ -43,10 +50,10 @@ try {
     loading="lazy"
   />
   <h1 class="mb-4 text-xl md:text-4xl font-bold">{guest.displayName}</h1>
-  <div class="max-w-3xl wysiwyg">
+  <div class="max-w-3xl wysiwyg mb-14">
     <Fragment set:html={guest.description?.trim()} />
   </div>
 
-  <!-- <h2 class="mt-14 mb-3 text-xl font-bold">Wydarzenia i prelekcje</h2>
-  <p>Gdy tylko pojawi się program</p> -->
+  <h2 class="mb-4 text-lg font-bold">Program</h2>
+  {events.map(event => <ProgramEventAstro event={event} />)}
 </Layout>
