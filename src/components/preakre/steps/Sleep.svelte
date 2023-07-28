@@ -19,11 +19,10 @@
         </p>
         <p>
           Za symboliczną opłatą udostępniamy uczestnikom konwentu miejsce na
-          sleep-roomie, na hali sportowej Zespołu Szkół Zawodowych 
-          Nr&nbsp;2&nbsp;w&nbsp;Skierniewicach (<a
-            href="https://goo.gl/maps/p6pPH4rYa2VnWL5q8"
+          sleep-roomie, na hali sportowej Liceum Ogólnokształcącego im. Bolesława Prusa&nbsp;w&nbsp;Skierniewicach (<a
+            href="https://goo.gl/maps/LAdc11scpk5MCY9fA"
             target="_blank"
-            class="link link-info link-blank">ok.&nbsp;400m od konwentu</a
+            class="link link-info link-blank">ok.&nbsp;450m od konwentu</a
             >).
           </p> 
       </div>
