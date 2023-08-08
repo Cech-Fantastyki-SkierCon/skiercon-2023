@@ -21,7 +21,7 @@ import react from '@astrojs/react'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://skiercon.pl',
-  output: 'server',
+  // output: 'server',
   trailingSlash: 'never',
   vite: {
     ssr: {
