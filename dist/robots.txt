@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://skiercon.pl/sitemap.xml.xml
