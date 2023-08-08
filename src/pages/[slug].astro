@@ -4,6 +4,25 @@ import Widgets from '@components/Widgets.astro'
 import { api } from 'src/api'
 import axios from 'axios'
 
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'goscie' } },
+    { params: { slug: 'akredytacja' } },
+    { params: { slug: 'conplace' } },
+    { params: { slug: 'dostepnosc' } },
+    { params: { slug: 'gastronomia' } },
+    { params: { slug: 'kontakt' } },
+    { params: { slug: 'noclegi' } },
+    { params: { slug: 'program' } },
+    { params: { slug: 'regulamin' } },
+    { params: { slug: 'rpg-larp' } },
+    { params: { slug: 'turnieje-planszowe' } },
+    { params: { slug: 'wolontariat' } },
+    { params: { slug: 'wystawcy' } },
+    { params: { slug: 'zglos-program' } },
+  ]
+}
+
 let page = null as unknown as Awaited<
   ReturnType<typeof api.pages.getPageBySlug>
 >['data']
