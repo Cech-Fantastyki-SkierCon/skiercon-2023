@@ -25,7 +25,7 @@ const eventSchema: Event = {
       '@type': 'Person',
       name: speaker.name,
       familyName: speaker.lastName,
-      image: speaker.image.url,
+      image: speaker.image?.url ?? '',
       additionalName: speaker.nick,
     }
   }),
