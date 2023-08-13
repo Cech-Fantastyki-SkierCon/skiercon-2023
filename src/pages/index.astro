@@ -7,14 +7,5 @@ const { data: page } = await api.pages.getPageBySlug('home')
 ---
 
 <Layout title={''} description={page.description}>
-  <h1>
-    <img
-      src="/skiercon-data.webp"
-      alt="SkierCon 28-30 lipca 2023"
-      width="1867"
-      height="845"
-      class="mt-0 md:pt-10"
-    />
-  </h1>
   <Widgets widgets={page.widgets} />
 </Layout>

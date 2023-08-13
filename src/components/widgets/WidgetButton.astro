@@ -12,7 +12,8 @@ const widget = Astro.props.widget
   <a
     href={widget.url}
     target={widget.openInNewTab ? '_blank' : '_self'}
-    class={'btn btn-lg ' + (widget.buttonFullWidth ? 'btn--full' : '')}
+    class={'btn btn-lg btn-primary ' +
+      (widget.buttonFullWidth ? 'btn--full' : '')}
   >
     {widget.title}
   </a>
