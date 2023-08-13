@@ -6,6 +6,42 @@ import { api } from 'src/api'
 import type { ProgramEvent, ProgramSpeakerProfileDto } from 'src/__gen-api'
 import axios from 'axios'
 
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'agnieszka-kulbat' } },
+    { params: { slug: 'anna-szumacher' } },
+    { params: { slug: 'artur-dzikowy-olchowy' } },
+    { params: { slug: 'barbara-zorana-maj' } },
+    { params: { slug: 'bartlomiej-sztobryn' } },
+    { params: { slug: 'barbara-spacekettle-snuszka' } },
+    { params: { slug: 'borys-zajaczkowski-bruno-grigori' } },
+    { params: { slug: 'dominika-nerd-kobieta-tarczon' } },
+    { params: { slug: 'dominika-urbanska' } },
+    { params: { slug: 'grzegorz-greg-gajek' } },
+    { params: { slug: 'grzegorz-wielgus' } },
+    { params: { slug: 'ilona-kobieta-slimak-myszkowska' } },
+    { params: { slug: 'jan-woznica' } },
+    { params: { slug: 'janusz-stankiewicz' } },
+    { params: { slug: 'kapitan-fandom' } },
+    { params: { slug: 'katarzyna-wierzbicka' } },
+    { params: { slug: 'krzysiek-piersa' } },
+    { params: { slug: 'leszek-cyfer' } },
+    { params: { slug: 'lukasz-kucharczyk' } },
+    { params: { slug: 'ryfek' } },
+    { params: { slug: 'magdalena-salik' } },
+    { params: { slug: 'marcin-kon-movie-konczewski' } },
+    { params: { slug: 'marta-kladz-kocot' } },
+    { params: { slug: 'piotr-firek' } },
+    { params: { slug: 'pawel-zbroszczyk' } },
+    { params: { slug: 'radek-rak' } },
+    { params: { slug: 'wiktoria-czyzycka' } },
+    { params: { slug: 'wiktoria-korzeniewska' } },
+    { params: { slug: 'witold-jablonski' } },
+    { params: { slug: 'vanthica' } },
+    { params: { slug: 'zbigniew-dzik' } },
+  ]
+}
+
 let guest: ProgramSpeakerProfileDto
 let events: ProgramEvent[]
 
@@ -42,9 +78,9 @@ try {
   />
 
   <img
-    src={guest.image.url}
-    width={guest.image.meta.width}
-    height={guest.image.meta.height}
+    src={guest.image?.url}
+    width={guest.image?.meta.width}
+    height={guest.image?.meta.height}
     alt={guest.displayName}
     class="w-full md:w-64 mb-8"
     loading="lazy"
