@@ -52,14 +52,14 @@ export function TimelineComponent(props: Props) {
     }
 
     if (activeDay === 'friday') {
-      options.start = '2023-07-28T16:00:00+02:00'
-      options.end = '2023-07-29T01:00:00+02:00'
+      options.start = '2023-09-15T16:00:00+02:00'
+      options.end = '2023-09-16T01:00:00+02:00'
     } else if (activeDay === 'saturday') {
-      options.start = '2023-07-29T08:00:00+02:00'
-      options.end = '2023-07-30T04:00:00+02:00'
+      options.start = '2023-09-16T08:00:00+02:00'
+      options.end = '2023-09-17T04:00:00+02:00'
     } else if (activeDay === 'sunday') {
-      options.start = '2023-07-30T09:00:00+02:00'
-      options.end = '2023-07-30T16:30:00+02:00'
+      options.start = '2023-09-17T09:00:00+02:00'
+      options.end = '2023-09-17T16:30:00+02:00'
     }
 
     options.min = options.start
