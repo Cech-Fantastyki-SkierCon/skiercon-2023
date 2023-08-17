@@ -1,5 +1,4 @@
 ---
-import Layout from '../layouts/Layout.astro'
 import { api } from 'src/api'
 import { TimelineComponent } from '@components/timeline/Timeline.tsx'
 
@@ -9,19 +8,32 @@ const [events, places] = await Promise.all([
 ])
 ---
 
-<Layout
-  title={'Program - Timeline'}
-  description={'Program SkierConu 2023'}
-  fullWidth
-  hideFooter
->
-  <TimelineComponent client:only="react" events={events} places={places} />
-</Layout>
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Audiowide&family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <TimelineComponent client:only="react" events={events} places={places} />
+  </body>
+</html>
 
 <style is:global lang="scss">
+  body {
+    font-family: 'Audiowide', cursive;
+    font-family: 'Lato', sans-serif;
+    background: #212b49;
+  }
   #container {
-    margin-top: 83px !important;
-    margin-bottom: -86px !important;
+    margin-top: 47px !important;
+    // margin-bottom: -86px !important;
   }
 
   .vis-timeline {
@@ -31,14 +43,14 @@ const [events, places] = await Promise.all([
   // Text color
   .vis-group-level-0,
   .vis-time-axis .vis-text {
-    color: rgb(209, 209, 209) !important;
+    color: white !important;
   }
 
   // Grid color
   .vis-label,
   .vis-foreground .vis-group,
   .vis-time-axis .vis-grid.vis-minor {
-    border-color: rgb(54, 54, 54) !important;
+    border-color: rgb(56, 72, 117) !important;
   }
 
   .vis-panel.vis-center,
@@ -47,7 +59,7 @@ const [events, places] = await Promise.all([
   .vis-panel.vis-right,
   .vis-panel.vis-top,
   .vis-panel.vis-bottom {
-    border-color: rgb(73, 73, 73) !important;
+    border-color: rgb(56, 72, 117) !important;
   }
 
   .vis-item {
@@ -70,11 +82,11 @@ const [events, places] = await Promise.all([
     position: fixed !important;
     width: 100%;
     z-index: 1;
-    top: auto !important;
-    bottom: 0px !important;
+    top: 68px !important;
     transform: translateX(1px);
-    background: #1e1e1e;
+    background: #212b49;
     margin-top: -20px !important;
+    border-bottom: 1px solid rgb(56, 72, 117);
 
     .vis-text {
     }

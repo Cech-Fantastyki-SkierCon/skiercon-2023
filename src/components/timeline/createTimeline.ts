@@ -23,16 +23,28 @@ export function createTimeline(
   options: TimelineOptions = {}
 ) {
   const eventsDs = new DataSet(events.map(event => eventToItem(event)))
-  const groups = places.map(place => ({
-    id: place.id,
-    content:
-      window.innerWidth < 600
-        ? ''
-        : `<div font-size="14px">${place.name}</div>` +
-          (place.programBlock
-            ? ` <div style="font-size: 11px; line-height: 12x;">${place.programBlock.name}</div>`
-            : ''),
-  }))
+  const groups = places.map(place => {
+    let placeName = place.name.replace(/\(.*\)/, '').trim()
+    if (placeName.length > 40) {
+      const x = placeName.split(' ')
+      placeName = [
+        ...x.slice(0, x.length / 2),
+        '<br>',
+        ...x.slice(x.length / 2),
+      ].join(' ')
+    }
+    const areaName = (place.name.match(/\(.*\)/) ?? [''])[0]
+    return {
+      id: place.id,
+      content:
+        window.innerWidth < 600
+          ? ''
+          : `<div style="font-size: 16px;">${placeName}</div>` +
+            (areaName
+              ? ` <div style="font-size: 11px; line-height: 12x;">${areaName}</div>`
+              : ''),
+    }
+  })
 
   const container = document.getElementById('container')!
   const timeline = new Timeline(container, eventsDs, new DataSet(groups), {
@@ -74,7 +86,7 @@ export function createTimeline(
     let time = `${startH} - ${endH}`
     if (event?.durationMinutes! > 60 * 24) {
       time = `Non stop`
-      startDate = '28-30 lipca 2023'
+      startDate = '15-17 września 2023'
     }
 
     const a11y: string[] = []
@@ -82,7 +94,7 @@ export function createTimeline(
       a11y.push('Miejsce dostępne dla osób z niepełnosprawnością ruchu')
     if (event?.a11yForAdults || event?.a11yOnlyForAdults)
       a11y.push('Sugerowany wiek uczestnika 18+')
-    else if (event?.a11yForChildren) a11y.push('Sugerowany wiek uczestnika 7+')
+    else if (event?.a11yForChildren) a11y.push('Odpowiedni dla dzieci')
     else a11y.push('Sugerowany wiek uczestnika 13+')
 
     if (event?.a11yForAutistic) a11y.push('Odpowiedni dla osób z autyzmem')
@@ -178,7 +190,7 @@ export function createTimeline(
       </div>
 
       <div class="modal-action">
-        <label onclick="eventModalCheckbox.checked = false" class="btn">Zamknij</label>
+        <label onclick="eventModalCheckbox.checked = false" class="btn" style="background: #ffc72c; color: black;">Zamknij</label>
       </div>
       `
 
@@ -192,7 +204,7 @@ export function createTimeline(
 
   window.scrollTo(0, 0)
   setTimeout(() => {
-    timeline.moveTo('2023-07-27T16:00:00+02:00')
+    timeline.moveTo('2023-09-15T16:00:00+02:00')
   }, 0)
 
   return timeline
