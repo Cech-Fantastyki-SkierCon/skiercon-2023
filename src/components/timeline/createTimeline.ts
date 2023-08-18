@@ -82,7 +82,7 @@ export function createTimeline(
     const event = events.find(e => e.id == selectId)
     const startH = moment(event?.dateStart).format('HH:mm')
     const endH = moment(event?.dateEnd).format('HH:mm')
-    let startDate = moment(event?.dateStart).format('DD') + ' lipca 2023'
+    let startDate = moment(event?.dateStart).format('DD') + ' września 2023'
     let time = `${startH} - ${endH}`
     if (event?.durationMinutes! > 60 * 24) {
       time = `Non stop`
