@@ -143,7 +143,7 @@
 
   <div class="form-control mb-3">
     <div class="mb-2 text-xl">
-      Twój wiek na dzień 28 lipca 2023 r. <span class="required">*</span>
+      Twój wiek na dzień 28 lipca 2024 r. <span class="required">*</span>
     </div>
     <div class="w-24">
       <label class="label cursor-pointer justify-start">

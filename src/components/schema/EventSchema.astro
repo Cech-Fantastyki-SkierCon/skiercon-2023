@@ -8,7 +8,7 @@ export interface Props {
 
 const eventSchema: Event = {
   '@type': 'Event',
-  name: 'SkierCon 2023',
+  name: 'SkierCon 2024',
   about: 'Konwent fantastyki w Skierniewicach',
   description:
     'SkierCon to kraina serkiem i jogurtem płynąca, do której w ostatni weekend lipca zjeżdżają się wędrowcy z bliska i z daleka. Ogromna drużyna śmiałków zbiera się, by przeżywać wspólne przygody, stawiać czoła wyzwaniom dla ciała i dla umysłu, uczyć się od Mędrców i odkrywać prawdziwą magię. Znajdziesz u nas wszystko to, czego potrzebujesz od wymarzonego konwentu, i jeszcze szczyptę czarów do tego.',
@@ -20,7 +20,7 @@ const eventSchema: Event = {
   },
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   typicalAgeRange: '13+',
-  performer: Astro.props.guests.map(speaker => {
+  performer: Astro.props.guests.map((speaker: ProgramSpeakerDto) => {
     return {
       '@type': 'Person',
       name: speaker.name,
