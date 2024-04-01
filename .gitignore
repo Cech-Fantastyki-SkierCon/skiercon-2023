@@ -20,5 +20,4 @@ pnpm-debug.log*
 
 __gen-api.ts
 
-#dist
 dist

@@ -36,14 +36,14 @@ module.exports = {
     themes: [
       {
         mytheme: {
-          ...require('daisyui/src/colors/themes')['[data-theme=halloween]'],
-          primary: '#303030',
-          'primary-content': 'rgb(211, 211, 211)',
-          neutral: '#161717',
-          info: '#CFC24F',
-          success: '#A1A531',
-          warning: '#687818',
-          error: '#196A78',
+          ...require('daisyui/src/colors/themes')['[data-theme=bumblebee]'],
+          // primary: '#303030',
+          // 'primary-content': 'rgb(211, 211, 211)',
+          // neutral: '#161717',
+          // info: '#CFC24F',
+          // success: '#A1A531',
+          // warning: '#687818',
+          // error: '#196A78',
         },
       },
     ],
