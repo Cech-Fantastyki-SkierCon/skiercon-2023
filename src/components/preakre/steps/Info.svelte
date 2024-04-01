@@ -1,6 +1,9 @@
 <script lang="ts">
   import Controls from '../Controls.svelte'
   import { preakreForm, preakreStep } from '../preakreStore'
+
+  let repeatEmail = ''
+  $: formHasErrors = $preakreForm.emailRepeat !== repeatEmail
 </script>
 
 <form on:submit|preventDefault={() => $preakreStep++}>
@@ -110,6 +113,26 @@
       inputmode="email"
       required
     />
+  </div>
+
+  <div class="form-control w-full mb-4">
+    <label class="label" for="email-repeat">
+      <span class="text-xl">Powtórz e-mail<span class="required">*</span></span>
+    </label>
+    <input
+      id="email-repeat"
+      type="email"
+      class="input input-bordered w-full"
+      bind:value={repeatEmail}
+      placeholder="shrek@bagno.com"
+      autocomplete="email"
+      inputmode="email"
+      required
+    />
+
+    {#if repeatEmail !== '' && $preakreForm.email !== repeatEmail}
+      <span class="text-red-500 py-2">Adresy e-mail muszą być jednakowe</span>
+    {/if}
   </div>
 
   <div class="mt-7">
@@ -232,5 +255,5 @@
       </div>
     </label>
   </div>
-  <Controls firstStep={true} />
+  <Controls firstStep={true} {formHasErrors} />
 </form>

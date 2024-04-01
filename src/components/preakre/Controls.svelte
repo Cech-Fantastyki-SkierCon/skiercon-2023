@@ -3,12 +3,19 @@
   export let lastStep = false
   export let loading = false
   export let firstStep = false
+  export let formHasErrors = false
 
   function back() {
     if (loading) return
     $preakreStep--
   }
 </script>
+
+{#if formHasErrors}
+  <span class="text-red-500 py-4">
+    Aby przejść dalej, popraw błędy w formularzu!
+  </span>
+{/if}
 
 <div
   class="flex md:flex-row mt-20"
@@ -35,7 +42,12 @@
       > Wstecz
     </button>
   {/if}
-  <button type="submit" class="btn btn-warning" class:mb-5={lastStep}>
+  <button
+    type="submit"
+    class="btn btn-warning"
+    class:mb-5={lastStep}
+    disabled={loading || formHasErrors}
+  >
     {#if lastStep}
       Przejdź do płatności
     {:else}
