@@ -78,7 +78,7 @@
         /></svg
       >
       Pszczelego Patrona nie obejmują zniżki na akredytację (jako Twórcy Programu
-      lub uczestnika konkursu JaSkier/OSkier).
+      lub uczestnika konkursu JaSkier/OSkier/Narys).
     </p>
 
     <div class="divider" />
@@ -155,7 +155,7 @@
           /></svg
         >
         Jeśli planujesz być Twórcą Programu lub uczestnikiem któregoś z&nbsp;konkursów
-        (JaSkier/OSkier), zwróć uwagę, żeby podać ten sam adres e-mail co w zgłoszeniu
+        (JaSkier/OSkier/Narys), zwróć uwagę, żeby podać ten sam adres e-mail co w zgłoszeniu
         punktu programu lub zgłoszeniu konkursowym. W&nbsp;oparciu o e-mail będziemy
         mogli zweryfikować Twoją zniżkę.
       </p>
@@ -217,7 +217,7 @@
     <p>
       Pamiętaj, jeśli jesteś osobą, która skończyła 13 lat, ale nie jest jeszcze
       pełnoletnia, zabierz ze sobą zgodę opiekuna prawnego - <a
-        href="https://drive.google.com/file/d/1JPMskT2EQtDTEyjflPNGquzyjDsvfvBv/view"
+        href="https://drive.google.com/file/d/1IvnPcGlj8lpDkYvZjmQGFAnB_Yg6bYrT/view"
         class="link link-info link-blank"
         target="_blank"
       >
